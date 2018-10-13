@@ -1,0 +1,11 @@
+development:
+  dialect: "sqlite3"
+  database: /home/ichavero/goStuff/Go/src/github.com/imcsk8/korima-tour/korima_korima_development.sqlite
+
+test:
+  dialect: "sqlite3"
+  database: /home/ichavero/goStuff/Go/src/github.com/imcsk8/korima-tour/korima_korima_test.sqlite
+
+production:
+  dialect: "sqlite3"
+  database: /home/ichavero/goStuff/Go/src/github.com/imcsk8/korima-tour/korima_korima_production.sqlite
