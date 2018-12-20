@@ -1,6 +1,7 @@
 package models
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"strings"
@@ -10,6 +11,7 @@ import (
 	"github.com/gobuffalo/uuid"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
+	"github.com/pkg/errors"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -122,4 +124,24 @@ func (v *EmailNotTaken) IsValid(errors *validate.Errors) {
 		// username already exists
 		errors.Add(validators.GenerateKey(v.Name), fmt.Sprintf("The email %s is not available", v.Field))
 	}
+}
+
+// Check user password and ACLs
+func (u *User) Authorize(tx *pop.Connection) error {
+	err := tx.Where("email = ?", strings.ToLower(u.Email)).First(u)
+	if err != nil {
+		// email not found in database
+		if errors.Cause(err) == sql.ErrNoRows {
+			return errors.New("User not found")
+		}
+		return errors.WithStack(err)
+	}
+	// Check given password against hashed password in database
+	// This is cool, the password is loaded from the user form and if the user is found in the database the user object is populated with the stored info
+	// which contains the password hash :D
+	err = bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(u.Password))
+	if err != nil {
+		return errors.New("Invalid Password")
+	}
+	return nil
 }

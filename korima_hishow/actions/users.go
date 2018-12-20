@@ -3,6 +3,7 @@ package actions
 import (
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/validate"
 	"github.com/imcsk8/korima-tour/korima_hishow/models"
 	"github.com/pkg/errors"
 )
@@ -247,5 +248,38 @@ func UsersRegisterPost(c buffalo.Context) error {
 	// If there are no errors set the success message
 	c.Flash().Add("success", "Account created successfully")
 	// Redirect to the home page
+	return c.Redirect(302, "/")
+}
+
+// UsersLoginShow displays a login form
+func UsersLoginShow(c buffalo.Context) error {
+	return c.Render(200, r.HTML("users/login"))
+}
+
+// UserLogin checks user password
+func UsersLogin(c buffalo.Context) error {
+	user := &models.User{}
+	// Bind the user to the HTML template form elements
+	if err := c.Bind(user); err != nil {
+		return errors.WithStack(err)
+	}
+	tx := c.Value("tx").(*pop.Connection)
+	err := user.Authorize(tx)
+	if err != nil {
+		c.Set("user", user)
+		verrs := validate.NewErrors()
+		verrs.Add("Login", "Invalid email or password")
+		c.Set("errors", verrs.Errors)
+		return c.Render(403, r.HTML("users/login"))
+	}
+	c.Session().Set("current_user_id", user.ID)
+	c.Flash().Add("success", "Welcome Back!")
+	return c.Redirect(302, "/")
+}
+
+// UsersLogout clears the session and logs out the user
+func UsersLogout(c buffalo.Context) error {
+	c.Session().Clear()
+	c.Flash().Add("success", "Bye bye baby!")
 	return c.Redirect(302, "/")
 }
