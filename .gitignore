@@ -1,3 +1,6 @@
+# Database info
+hishow/database.yml
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -24,3 +27,16 @@ public/assets/
 .env
 *.swp
 *.swo
+vendor/
+**/*.log
+**/*.sqlite
+.idea/
+bin/
+tmp/
+node_modules/
+.sass-cache/
+*-packr.go
+public/assets/
+.vscode/
+.grifter/
+.env
