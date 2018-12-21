@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/pop/nulls"
 	"github.com/gobuffalo/uuid"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
@@ -16,20 +17,20 @@ import (
 )
 
 type User struct {
-	ID              uuid.UUID `json:"id" db:"id"`
-	CreatedAt       time.Time `json:"created_at" db:"created_at"`
-	UpdatedAt       time.Time `json:"updated_at" db:"updated_at"`
-	Firstname       string    `json:"firstname" db:"firstname"`
-	Username        string    `json:"username" db:"username" form:"username"`
-	Middlename      string    `json:"middlename" db:"middlename"`
-	Lastname        string    `json:"lastname" db:"lastname"`
-	Mlastname       string    `json:"mlastname" db:"mlastname"`
-	Email           string    `json:"email" db:"email"`
-	Phone           string    `json:"phone" db:"phone"`
-	Password        string    `json:"-" db:"-"`
-	PasswordHash    string    `json:"-" db:"password_hash"`
-	PasswordConfirm string    `json:"-" db:"-"`
-	Admin           bool      `json:"admin" db:"admin"`
+	ID              uuid.UUID    `json:"id" db:"id"`
+	CreatedAt       time.Time    `json:"created_at" db:"created_at"`
+	UpdatedAt       time.Time    `json:"updated_at" db:"updated_at"`
+	Firstname       nulls.String `json:"firstname" db:"firstname"`
+	Username        string       `json:"username" db:"username" form:"username"`
+	Middlename      nulls.String `json:"middlename" db:"middlename"`
+	Lastname        nulls.String `json:"lastname" db:"lastname"`
+	Mlastname       nulls.String `json:"mlastname" db:"mlastname"`
+	Email           string       `json:"email" db:"email"`
+	Phone           nulls.String `json:"phone" db:"phone"`
+	Password        string       `json:"-" db:"-"`
+	PasswordHash    string       `json:"-" db:"password_hash"`
+	PasswordConfirm string       `json:"-" db:"-"`
+	Admin           bool         `json:"admin" db:"admin"`
 }
 
 // Check for usernames

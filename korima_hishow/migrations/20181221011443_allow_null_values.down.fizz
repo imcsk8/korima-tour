@@ -1,0 +1,5 @@
+change_column("users", "firstname", "string", {})
+change_column("users", "middlename", "string", {})
+change_column("users", "lastname", "string", {})
+change_column("users", "mlastname", "string", {})
+change_column("users", "phone", "string", {})

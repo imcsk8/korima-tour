@@ -50,12 +50,12 @@ ALTER TABLE public.schema_migration OWNER TO korima_pg;
 
 CREATE TABLE public.users (
     id uuid NOT NULL,
-    firstname character varying(255) NOT NULL,
-    middlename character varying(255) NOT NULL,
-    lastname character varying(255) NOT NULL,
-    mlastname character varying(255) NOT NULL,
+    firstname character varying(255),
+    middlename character varying(255),
+    lastname character varying(255),
+    mlastname character varying(255),
     email character varying(255) NOT NULL,
-    phone character varying(255) NOT NULL,
+    phone character varying(255),
     admin boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,

@@ -1,0 +1,5 @@
+change_column("users", "firstname", "string", {"null": true})
+change_column("users", "middlename", "string", {"null": true})
+change_column("users", "lastname", "string", {"null": true})
+change_column("users", "mlastname", "string", {"null": true})
+change_column("users", "phone", "string", {"null": true})
