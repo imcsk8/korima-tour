@@ -59,7 +59,8 @@ CREATE TABLE public.users (
     admin boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    password_hash character varying(255) DEFAULT ''::character varying NOT NULL
+    password_hash character varying(255) DEFAULT ''::character varying NOT NULL,
+    username character varying(255) DEFAULT ''::character varying NOT NULL
 );
 
 
