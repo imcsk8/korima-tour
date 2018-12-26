@@ -282,3 +282,19 @@ func UsersLogout(c buffalo.Context) error {
 	c.Flash().Add("success", "Bye bye baby!")
 	return c.Redirect(302, "/")
 }
+
+// SetCurrentUser takes the user id from the session and adds it to the context
+func SetCurrentUser(next buffalo.Handler) buffalo.Handler {
+	return func(c buffalo.Context) error {
+		if uid := c.Session().Get("current_user_id"); uid != nil {
+			u := &models.User{}
+			tx := c.Value("tx").(*pop.Connection)
+			err := tx.Find(u, uid)
+			if err != nil {
+				return errors.WithStack(err)
+			}
+			c.Set("current_user", u)
+		}
+		return next(c)
+	}
+}

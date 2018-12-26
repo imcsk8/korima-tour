@@ -57,6 +57,9 @@ func App() *buffalo.App {
 		// Setup and use translations:
 		app.Use(translations())
 
+		// Set current user to the context
+		app.Use(SetCurrentUser)
+
 		app.GET("/", HomeHandler)
 		app.GET("/routes", RouteHandler)
 
