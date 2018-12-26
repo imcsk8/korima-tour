@@ -230,8 +230,7 @@ func UsersRegisterPost(c buffalo.Context) error {
 
 	tx := c.Value("tx").(*pop.Connection)
 	// Validate the data from the HTML form
-	//verrs, err := user.Create(tx)
-	verrs, err := tx.ValidateAndCreate(user)
+	verrs, err := user.Create(tx)
 	if err != nil {
 		return errors.WithStack(err)
 	}
