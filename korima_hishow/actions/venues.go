@@ -1,6 +1,11 @@
 package actions
 
-import "github.com/gobuffalo/buffalo"
+import (
+	"github.com/gobuffalo/buffalo"
+	"github.com/gobuffalo/pop"
+	"github.com/imcsk8/korima-tour/korima_hishow/models"
+	"github.com/pkg/errors"
+)
 
 // VenuesIndex default implementation.
 func VenuesIndex(c buffalo.Context) error {
@@ -9,7 +14,7 @@ func VenuesIndex(c buffalo.Context) error {
 
 // VenuesCreateShow shows the venue create page
 func VenuesCreateShow(c buffalo.Context) error {
-	c.Set("post", &models.Venue{})
+	c.Set("venue", &models.Venue{})
 	return c.Render(200, r.HTML("venues/create.html"))
 }
 
