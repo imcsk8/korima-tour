@@ -71,5 +71,16 @@ func VenuesDelete(c buffalo.Context) error {
 
 // VenuesDetail default implementation.
 func VenuesDetail(c buffalo.Context) error {
+	tx := c.Value("tx").(*pop.Connection)
+	venue := &models.Venue{}
+	if err := tx.Find(venue, c.Param("vid")); err != nil {
+		return c.Error(404, err)
+	}
+	owner := &models.User{}
+	if err := tx.Find(owner, venue.OwnerID); err != nil {
+		return c.Error(404, err)
+	}
+	c.Set("venue", venue)
+	c.Set("owner", owner)
 	return c.Render(200, r.HTML("venues/detail.html"))
 }
