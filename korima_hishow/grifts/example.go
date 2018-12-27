@@ -1,4 +1,3 @@
-
 package grifts
 
 import (

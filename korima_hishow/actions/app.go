@@ -74,6 +74,13 @@ func App() *buffalo.App {
 		auth.POST("/login", UsersLogin)
 		auth.GET("/logout", UsersLogout)
 
+		venuesGroup := app.Group("/venues")
+		venuesGroup.GET("/index", VenuesIndex)
+		venuesGroup.GET("/create", VenuesCreateShow)
+		venuesGroup.POST("/create", VenuesCreate)
+		venuesGroup.GET("/edit", VenuesEdit)
+		venuesGroup.GET("/delete", VenuesDelete)
+		venuesGroup.GET("/detail", VenuesDetail)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
