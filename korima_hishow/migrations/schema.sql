@@ -67,11 +67,35 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO korima_pg;
 
 --
+-- Name: venues; Type: TABLE; Schema: public; Owner: korima_pg
+--
+
+CREATE TABLE public.venues (
+    id uuid NOT NULL,
+    name character varying(255) NOT NULL,
+    description text NOT NULL,
+    owner_id uuid NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.venues OWNER TO korima_pg;
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
 --
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: venues venues_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
+--
+
+ALTER TABLE ONLY public.venues
+    ADD CONSTRAINT venues_pkey PRIMARY KEY (id);
 
 
 --
