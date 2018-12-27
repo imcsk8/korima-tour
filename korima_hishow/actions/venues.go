@@ -9,6 +9,19 @@ import (
 
 // VenuesIndex default implementation.
 func VenuesIndex(c buffalo.Context) error {
+	tx := c.Value("tx").(*pop.Connection)
+	venues := &models.Venues{}
+	// Paginate results. Params "page" and "per_page" control pagination.
+	// Default values are "page=1" and "per_page=20".
+	q := tx.PaginateFromParams(c.Params())
+	// Retrieve all Posts from the DB
+	if err := q.All(venues); err != nil {
+		return errors.WithStack(err)
+	}
+	// Make posts available inside the html template
+	c.Set("venues", venues)
+	// Add the paginator to the context so it can be used in the template.
+	c.Set("pagination", q.Paginator)
 	return c.Render(200, r.HTML("venues/index.html"))
 }
 
