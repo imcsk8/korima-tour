@@ -17,7 +17,7 @@
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
         <h2>Create a new Venue</h2>
-        <form action="<%= postsCreatePath() %>" method="POST">
+        <form action="<%= venuesCreatePath() %>" method="POST">
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <div class="form-group">
                 <label for="title">Title</label>
