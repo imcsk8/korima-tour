@@ -88,7 +88,7 @@ func App() *buffalo.App {
 		bandsGroup.GET("/create", BandsCreateShow)
 		bandsGroup.POST("/create", BandsCreate)
 		bandsGroup.GET("/edit/{id}", BandsDetail)
-		venuesGroup.POST("/edit/{id}", VenuesEdit)
+		bandsGroup.POST("/edit/{id}", BandsEdit)
 		bandsGroup.GET("/delete/{id}", BandsDelete)
 		bandsGroup.GET("/detail/{id}", BandsDetail)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
