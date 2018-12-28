@@ -14,7 +14,8 @@ func VenuesIndex(c buffalo.Context) error {
 	// Paginate results. Params "page" and "per_page" control pagination.
 	// Default values are "page=1" and "per_page=20".
 	q := tx.PaginateFromParams(c.Params())
-	// Retrieve all Posts from the DB
+	// Retrieve all venues from the database
+	// TODO add ACL's
 	if err := q.All(venues); err != nil {
 		return errors.WithStack(err)
 	}
@@ -84,7 +85,16 @@ func VenuesEdit(c buffalo.Context) error {
 
 // VenuesDelete default implementation.
 func VenuesDelete(c buffalo.Context) error {
-	return c.Render(200, r.HTML("venues/delete.html"))
+	tx := c.Value("tx").(*pop.Connection)
+	venue := &models.Venue{}
+	if err := tx.Find(venue, c.Param("vid")); err != nil {
+		return c.Error(404, err)
+	}
+	if err := tx.Destroy(venue); err != nil {
+		return errors.WithStack(err)
+	}
+	c.Flash().Add("success", "Venue was successfully deleted.")
+	return c.Redirect(302, "/venues/index")
 }
 
 // VenuesDetail default implementation.
