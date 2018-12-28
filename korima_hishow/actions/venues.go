@@ -87,7 +87,7 @@ func VenuesEdit(c buffalo.Context) error {
 func VenuesDelete(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 	venue := &models.Venue{}
-	if err := tx.Find(venue, c.Param("vid")); err != nil {
+	if err := tx.Find(venue, c.Param("id")); err != nil {
 		return c.Error(404, err)
 	}
 	if err := tx.Destroy(venue); err != nil {
@@ -101,7 +101,7 @@ func VenuesDelete(c buffalo.Context) error {
 func VenuesDetail(c buffalo.Context) error {
 	tx := c.Value("tx").(*pop.Connection)
 	venue := &models.Venue{}
-	if err := tx.Find(venue, c.Param("vid")); err != nil {
+	if err := tx.Find(venue, c.Param("id")); err != nil {
 		return c.Error(404, err)
 	}
 	owner := &models.User{}
