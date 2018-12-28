@@ -50,6 +50,22 @@ CREATE TABLE public.bands (
 ALTER TABLE public.bands OWNER TO korima_pg;
 
 --
+-- Name: bookers; Type: TABLE; Schema: public; Owner: korima_pg
+--
+
+CREATE TABLE public.bookers (
+    id uuid NOT NULL,
+    name character varying(255) NOT NULL,
+    description text NOT NULL,
+    owner_id uuid NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.bookers OWNER TO korima_pg;
+
+--
 -- Name: schema_migration; Type: TABLE; Schema: public; Owner: korima_pg
 --
 
@@ -104,6 +120,14 @@ ALTER TABLE public.venues OWNER TO korima_pg;
 
 ALTER TABLE ONLY public.bands
     ADD CONSTRAINT bands_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: bookers bookers_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
+--
+
+ALTER TABLE ONLY public.bookers
+    ADD CONSTRAINT bookers_pkey PRIMARY KEY (id);
 
 
 --
