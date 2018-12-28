@@ -9,6 +9,7 @@
         <%= for (v) in venues { %>
             <hr>
             <a href="/venues/detail/<%= v.ID %>"><h1><%= v.Name %></h1></a>
+            <a href="<%= venuesDeletePath({vid: v.ID}) %>" class="btn btn-danger">Delete Venue</a>
             <p><%= markdown(truncate(v.Description, {"size": 200})) %></p>
         <% } %>
     </div>
