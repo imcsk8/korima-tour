@@ -1,0 +1,35 @@
+<h1>Bookers</h1>
+
+<div class="row">
+    <div class="col">
+    <%= if (errors) { %>
+        <%= for (key, val) in errors { %>
+            <div class="alert alert-danger alert-dismissible fade show m-1" role="alert">
+                <%= val %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+         <% } %>
+    <% } %>
+    </div>
+</div>
+<div class="row mt-3 justify-content-center">
+    <div class="col-md-8 col-sm-10">
+        <h2>Create a new Booker</h2>
+        <form action="<%= bookersCreatePath() %>" method="POST">
+            <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
+            <div class="form-group">
+                <label for="title">Nombre</label>
+                <input type="text" name="Name" class="form-control" id="name" value="<%= booker.Name %>">
+            </div>
+            <div class="form-group">
+                <label for="content">Descripción</label>
+                <textarea class="form-control" name="Description" id="description"  rows="20">
+                    <%= booker.Description %>
+                </textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Publish</button>
+        </form>
+    </div>
+</div>

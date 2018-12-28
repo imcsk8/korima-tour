@@ -1,0 +1,21 @@
+<h1>Bookers</h1>
+<div class="row">
+    <div class="col-md-3 offset-md-9">
+        <a href="<%= bookersCreatePath() %>" class="btn btn-primary">Add Booker</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <%= for (b) in bookers { %>
+            <hr>
+            <a href="/bookers/detail/<%= b.ID %>"><h1><%= b.Name %></h1></a>
+            <a href="<%= bookersDeletePath({id: b.ID}) %>" class="btn btn-danger">Delete Booker</a>
+            <p><%= markdown(truncate(b.Description, {"size": 200})) %></p>
+        <% } %>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <%= paginator(pagination) %>
+    </div>
+</div>
