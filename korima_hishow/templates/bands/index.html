@@ -1,1 +1,21 @@
-<h1>Bands#Index</h1>
+<h1>Bands</h1>
+<div class="row">
+    <div class="col-md-3 offset-md-9">
+        <a href="<%= bandsCreatePath() %>" class="btn btn-primary">Add Band</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <%= for (b) in bands { %>
+            <hr>
+            <a href="/bands/detail/<%= b.ID %>"><h1><%= b.Name %></h1></a>
+            <a href="<%= bandsDeletePath({id: b.ID}) %>" class="btn btn-danger">Delete Band</a>
+            <p><%= markdown(truncate(b.Description, {"size": 200})) %></p>
+        <% } %>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <%= paginator(pagination) %>
+    </div>
+</div>
