@@ -61,7 +61,25 @@ func VenuesCreate(c buffalo.Context) error {
 
 // VenuesEdit default implementation.
 func VenuesEdit(c buffalo.Context) error {
-	return c.Render(200, r.HTML("venues/edit.html"))
+	tx := c.Value("tx").(*pop.Connection)
+	venue := &models.Venue{}
+	if err := tx.Find(venue, c.Param("id")); err != nil {
+		return c.Error(404, err)
+	}
+	if err := c.Bind(venue); err != nil {
+		return errors.WithStack(err)
+	}
+	verrs, err := tx.ValidateAndUpdate(venue)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+	if verrs.HasAny() {
+		c.Set("venue", venue)
+		c.Set("errors", verrs.Errors)
+		return c.Render(422, r.HTML("venues/detail.html"))
+	}
+	c.Flash().Add("success", "Venue was updated successfully.")
+	return c.Redirect(302, "/venues/detail/%s", venue.ID)
 }
 
 // VenuesDelete default implementation.
