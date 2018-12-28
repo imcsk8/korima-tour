@@ -1,11 +1,12 @@
 package models
 
 import (
+	"time"
+
 	"github.com/gobuffalo/pop"
 	uuid "github.com/gobuffalo/uuid"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
-	"time"
 )
 
 type Venue struct {
