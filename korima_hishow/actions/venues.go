@@ -56,7 +56,7 @@ func VenuesCreate(c buffalo.Context) error {
 	// If there are no errors set a success message
 	c.Flash().Add("success", "New Venue added successfully.")
 	// and redirect to the index page
-	return c.Redirect(302, "/")
+	return c.Redirect(302, "/venues/index")
 }
 
 // VenuesEdit default implementation.
