@@ -1,0 +1,1 @@
+add_column("venues", "photo", "string", {"default": "", "null": true})
