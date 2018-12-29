@@ -1,3 +1,11 @@
 # For more information on using i18n see: https://github.com/nicksnyder/go-i18n
 - id: welcome_greeting
   translation: "Bienvenido a HiShow"
+- id: name
+  translation: "Nombre"
+- id: description
+  translation: "Descripción"
+- id: photo
+  translation: "Foto"
+- id: create_venue_title
+  translation: "Crear Venue"
