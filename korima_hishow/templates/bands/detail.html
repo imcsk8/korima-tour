@@ -17,7 +17,7 @@
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
         <h2>Band</h2>
-        <form action="<%= editBandsPath({id: band.ID}) %>" method="POST">
+        <%= form({action: editBandsPath({id: band.ID}) , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <input name="id" type="hidden" value="<%= band.ID %>">
             <div class="form-group">
@@ -29,9 +29,12 @@
                 <textarea class="form-control" name="Description" id="description"  rows="20">
                     <%= band.Description %>
                 </textarea>
+                <label for="content"><%= t("photo") %></label>
+                <img height="200" width="200" src="<%= band.Photo %>">
+                <%= f.FileTag({name: "photo_file"}) %>
             </div>
             <button type="submit" class="btn btn-primary">Publish</button>
             <a href="<%= bandsDeletePath({id: band.ID}) %>" class="btn btn-danger">Delete Band  </a>
-        </form>
+        <% } %>
     </div>
 </div>
