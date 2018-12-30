@@ -18,17 +18,16 @@
     <div class="col-md-8 col-sm-10">
         <h2>Create a new Band</h2>
 
-        <%= form({action: bandsCreatePath(), method: "POST", enctype: "multipart/form-data"}) {
-         %>
+        <%= form({action: bandsCreatePath(), method: "POST", enctype: "multipart/form-data"}) { %>
 
 
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <div class="form-group">
-                <label for="title">Nombre</label>
+                <label for="title"><%= t("name") %></label>
                 <input type="text" name="Name" class="form-control" id="name" value="<%= band.Name %>">
             </div>
             <div class="form-group">
-                <label for="content">Descripción</label>
+                <label for="content"><%= t("description") %></label>
                 <textarea class="form-control" name="Description" id="description"  rows="20">
                     <%= band.Description %>
                 </textarea>
