@@ -1,9 +1,6 @@
 package models
 
 import (
-	"io"
-	"os"
-	"path/filepath"
 	"time"
 
 	"github.com/gobuffalo/buffalo/binding"
@@ -12,9 +9,6 @@ import (
 	uuid "github.com/gobuffalo/uuid"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
-
-	"github.com/pkg/errors"
-	"github.com/sirupsen/logrus"
 )
 
 type Venue struct {
@@ -38,27 +32,32 @@ func (p *Venue) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	), nil
 }
 
-// BeforeSave is a callback that preprocess the struct before saving it to the database
+// BeforeSave is a callback that sets fields to be added to the database
 func (v *Venue) BeforeSave(tx *pop.Connection) error {
-	v.Photo = v.PhotoFile.Filename
-	return nil
+	return BeforeSaveFile(v)
 }
 
 // AfterSave is a callback that saves the file after the venue is saved to the database
 func (v *Venue) AfterSave(tx *pop.Connection) error {
-	if !v.PhotoFile.Valid() {
-		logrus.Infof("Invalid photo file: %v", v.PhotoFile)
-		return nil
-	}
-	dir := filepath.Join(".", "public/uploads/photos")
-	if err := os.MkdirAll(dir, 0755); err != nil {
-		return errors.WithStack(err)
-	}
-	f, err := os.Create(filepath.Join(dir, v.PhotoFile.Filename))
-	if err != nil {
-		return errors.WithStack(err)
-	}
-	defer f.Close()
-	_, err = io.Copy(f, v.PhotoFile)
-	return err
+	return AfterSaveFile(v)
+}
+
+// SetPhotoName sets the photo filename parameter in the Photo field of te database
+func (v *Venue) SetPhotoName() error {
+	v.Photo = v.PhotoFile.Filename
+	return nil
+}
+
+// ValidPhoto returns true if there's an uploaded photo from the form
+func (v *Venue) ValidPhoto() bool {
+	return v.PhotoFile.Valid() && v.PhotoFile.Filename != ""
+}
+
+// GetPhotoFilename returns the filename of the uploaded photo
+func (v *Venue) GetPhotoFileName() string {
+	return v.PhotoFile.Filename
+}
+
+func (v *Venue) GetPhotoStream() binding.File {
+	return v.PhotoFile
 }
