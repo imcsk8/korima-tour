@@ -109,7 +109,7 @@ func VenuesDetail(c buffalo.Context) error {
 		return c.Error(404, err)
 	}
 	if venue.Photo != "" {
-		venue.Photo = "/uploads/photos/" + venue.Photo
+		venue.Photo = "/public/uploads/photos/" + venue.Photo
 	} else {
 		venue.Photo = "/assets/images/default_image.png"
 	}
