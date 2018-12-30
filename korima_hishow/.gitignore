@@ -8,6 +8,7 @@ node_modules/
 .sass-cache/
 *-packr.go
 public/assets/
+public/uploads/photos/
 korima_hishow
 .vscode/
 .grifter/
