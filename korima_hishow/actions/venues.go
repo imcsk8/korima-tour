@@ -108,6 +108,11 @@ func VenuesDetail(c buffalo.Context) error {
 	if err := tx.Find(owner, venue.OwnerID); err != nil {
 		return c.Error(404, err)
 	}
+	if venue.Photo != "" {
+		venue.Photo = "/uploads/photos/" + venue.Photo
+	} else {
+		venue.Photo = "/assets/images/default_image.png"
+	}
 	c.Set("venue", venue)
 	c.Set("owner", owner)
 	return c.Render(200, r.HTML("venues/detail.html"))
