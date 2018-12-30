@@ -16,20 +16,22 @@
 </div>
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
-        <h2>Create a new Venue</h2>
-        <form action="<%= venuesCreatePath() %>" method="POST">
+        <h2><%= t("create_venue_title") %></h2>
+        <%= form({action: venuesCreatePath(), method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <div class="form-group">
-                <label for="title">Nombre</label>
+                <label for="title"><%= t("name") %></label>
                 <input type="text" name="Name" class="form-control" id="name" value="<%= venue.Name %>">
             </div>
             <div class="form-group">
-                <label for="content">Descripción</label>
-                <textarea class="form-control" name="Description" id="description"  rows="20">
+                <label for="content"><%= t("description") %></label>
+                <textarea class="form-control" name="Description" id="description"  rows="10">
                     <%= venue.Description %>
                 </textarea>
+                <label for="content"><%= t("photo") %></label>
+                <%= f.FileTag({name: "photo_file"}) %>
             </div>
-            <button type="submit" class="btn btn-primary">Publish</button>
-        </form>
+            <button type="submit" class="btn btn-primary"><%= t("submit") %></button>
+        <% } %>
     </div>
 </div>
