@@ -108,6 +108,11 @@ func BandsDetail(c buffalo.Context) error {
 	if err := tx.Find(owner, band.OwnerID); err != nil {
 		return c.Error(404, err)
 	}
+	if band.Photo != "" {
+		band.Photo = "/uploads/photos/" + band.Photo
+	} else {
+		band.Photo = "/assets/images/default_image.png"
+	}
 	c.Set("band", band)
 	c.Set("owner", owner)
 	return c.Render(200, r.HTML("bands/detail.html"))
