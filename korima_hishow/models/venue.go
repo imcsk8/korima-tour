@@ -38,19 +38,19 @@ func (p *Venue) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	), nil
 }
 
-// BeforeCreate is a callback that preprocess the struct before saving it to the database
-func (v *Venue) BeforeCreate(tx *pop.Connection) error {
+// BeforeSave is a callback that preprocess the struct before saving it to the database
+func (v *Venue) BeforeSave(tx *pop.Connection) error {
 	v.Photo = v.PhotoFile.Filename
 	return nil
 }
 
-// AfterCreate is a callback that saves the file after the venue is saved to the database
-func (v *Venue) AfterCreate(tx *pop.Connection) error {
+// AfterSave is a callback that saves the file after the venue is saved to the database
+func (v *Venue) AfterSave(tx *pop.Connection) error {
 	if !v.PhotoFile.Valid() {
 		logrus.Infof("Invalid photo file: %v", v.PhotoFile)
 		return nil
 	}
-	dir := filepath.Join(".", "uploads/photos")
+	dir := filepath.Join(".", "public/uploads/photos")
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return errors.WithStack(err)
 	}
