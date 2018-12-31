@@ -7,7 +7,8 @@
 
 <table class="table table-striped">
   <thead>
-  <th>Firstname</th>
+    <th>Username</th>
+    <th>Firstname</th>
     <th>Middlename</th>
     <th>Lastname</th>
     <th>Mlastname</th>
@@ -19,7 +20,8 @@
   <tbody>
     <%= for (user) in users { %>
       <tr>
-      <td><%= user.Firstname %></td>
+        <td><%= user.Username %></td>
+        <td><%= user.Firstname %></td>
         <td><%= user.Middlename %></td>
         <td><%= user.Lastname %></td>
         <td><%= user.Mlastname %></td>
@@ -28,9 +30,11 @@
         <td><%= user.Admin %></td>
         <td>
           <div class="pull-right">
-            <a href="<%= userPath({ user_id: user.ID }) %>" class="btn btn-info">View</a>
-            <a href="<%= editUserPath({ user_id: user.ID }) %>" class="btn btn-warning">Edit</a>
-            <a href="<%= userPath({ user_id: user.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+            <a href="<%= usersDetailPath({ id: user.ID }) %>" class="btn btn-info">View</a>
+            <%= if (current_user.Admin) { %>
+            <a href="<%= editUsersPath({ id: user.ID }) %>" class="btn btn-warning">Edit</a>
+            <a href="<%= usersDeletePath({ id: user.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+            <% } %>
           </div>
         </td>
       </tr>
