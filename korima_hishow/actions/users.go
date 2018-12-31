@@ -178,7 +178,7 @@ func (v UsersResource) Update(c buffalo.Context) error {
 }
 
 // Destroy deletes a User from the DB. This function is mapped
-// to the path DELETE /users/{user_id}
+// to the path DELETE /users/id}
 func (v UsersResource) Destroy(c buffalo.Context) error {
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
@@ -190,7 +190,7 @@ func (v UsersResource) Destroy(c buffalo.Context) error {
 	user := &models.User{}
 
 	// To find the User the parameter user_id is used.
-	if err := tx.Find(user, c.Param("user_id")); err != nil {
+	if err := tx.Find(user, c.Param("id")); err != nil {
 		return c.Error(404, err)
 	}
 
@@ -202,7 +202,7 @@ func (v UsersResource) Destroy(c buffalo.Context) error {
 	c.Flash().Add("success", "User was destroyed successfully")
 
 	// Redirect to the users index page
-	return c.Render(200, r.Auto(c, user))
+	return c.Redirect(302, "/users/index")
 }
 
 // UserRegisterGet displays a register form
