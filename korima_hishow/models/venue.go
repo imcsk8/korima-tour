@@ -61,3 +61,8 @@ func (v *Venue) GetPhotoFileName() string {
 func (v *Venue) GetPhotoStream() binding.File {
 	return v.PhotoFile
 }
+
+// GetID returns a string representation of the ID
+func (v *Venue) GetID() string {
+	return v.ID.String()
+}
