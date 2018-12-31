@@ -1,0 +1,1 @@
+add_column("bookers", "photo", "string", {"default": "", "null": true})
