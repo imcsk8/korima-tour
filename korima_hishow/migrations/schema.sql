@@ -34,6 +34,20 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: acl; Type: TABLE; Schema: public; Owner: korima_pg
+--
+
+CREATE TABLE public.acl (
+    id uuid NOT NULL,
+    level integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.acl OWNER TO korima_pg;
+
+--
 -- Name: bands; Type: TABLE; Schema: public; Owner: korima_pg
 --
 
@@ -116,6 +130,14 @@ CREATE TABLE public.venues (
 
 
 ALTER TABLE public.venues OWNER TO korima_pg;
+
+--
+-- Name: acl acl_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
+--
+
+ALTER TABLE ONLY public.acl
+    ADD CONSTRAINT acl_pkey PRIMARY KEY (id);
+
 
 --
 -- Name: bands bands_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
