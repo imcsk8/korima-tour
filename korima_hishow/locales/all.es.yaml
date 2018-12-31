@@ -39,3 +39,9 @@
   translation: "Aceptar"
 - id: add
   translation: "Agregar"
+- id: view
+  translation: "Ver"
+- id: edit
+  translation: "Editar"
+- id: back
+  translation: "Regresar a"
