@@ -61,3 +61,8 @@ func (b *Booker) GetPhotoFileName() string {
 func (b *Booker) GetPhotoStream() binding.File {
 	return b.PhotoFile
 }
+
+// GetID returns a string representation of the ID
+func (b *Booker) GetID() string {
+	return b.ID.String()
+}
