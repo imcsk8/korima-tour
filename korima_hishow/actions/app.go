@@ -65,6 +65,7 @@ func App() *buffalo.App {
 
 		//app.Resource("/users", UsersResource{&buffalo.BaseResource{}})
 		auth := app.Group("/users")
+		auth.GET("/", UsersResource{&buffalo.BaseResource{}}.List)
 		auth.GET("/list", UsersResource{&buffalo.BaseResource{}}.List)
 		auth.GET("/index", UsersResource{&buffalo.BaseResource{}}.List)
 		auth.GET("/new", UsersResource{&buffalo.BaseResource{}}.New)
@@ -72,6 +73,7 @@ func App() *buffalo.App {
 		auth.GET("/edit/{id}", UsersResource{&buffalo.BaseResource{}}.Edit)
 		auth.POST("/update/{id}", UsersResource{&buffalo.BaseResource{}}.Update)
 		auth.GET("/delete/{id}", UsersResource{&buffalo.BaseResource{}}.Destroy)
+		auth.DELETE("/delete/{id}", UsersResource{&buffalo.BaseResource{}}.Destroy)
 		//auth.GET("/index", UsersResource{&buffalo.BaseResource{}})
 		auth.GET("/register", UsersRegisterGet)
 		auth.POST("/register", UsersRegisterPost)
