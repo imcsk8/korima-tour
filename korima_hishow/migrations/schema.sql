@@ -60,7 +60,8 @@ CREATE TABLE public.bookers (
     description text NOT NULL,
     owner_id uuid NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    photo character varying(255) DEFAULT ''::character varying
 );
 
 
