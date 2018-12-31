@@ -45,10 +45,10 @@ func (v UsersResource) List(c buffalo.Context) error {
 		return errors.WithStack(err)
 	}
 
+	c.Set("users", users)
 	// Add the paginator to the context so it can be used in the template.
 	c.Set("pagination", q.Paginator)
-
-	return c.Render(200, r.Auto(c, users))
+	return c.Render(200, r.HTML("users/index"))
 }
 
 // Show gets the data for one User. This function is mapped to
@@ -128,7 +128,7 @@ func (v UsersResource) Edit(c buffalo.Context) error {
 	// Allocate an empty User
 	user := &models.User{}
 
-	if err := tx.Find(user, c.Param("user_id")); err != nil {
+	if err := tx.Find(user, c.Param("id")); err != nil {
 		return c.Error(404, err)
 	}
 
