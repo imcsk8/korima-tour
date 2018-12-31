@@ -32,6 +32,11 @@
 	                <li class="nav-item">
                         <a class="nav-link" href="<%= bookersIndexPath() %>">Bookers</a>
 	                </li>
+                    <%= if (current_user.Admin) { %>
+	                <li class="nav-item">
+                        <a class="nav-link" href="<%= usersIndexPath() %>">Usuarios</a>
+	                </li>
+                    <% } %>
 
 
 	            </ul>
