@@ -1,8 +1,8 @@
 <div class="page-header">
-  <h1>Users</h1>
+    <h1><%= t("users") %></h1>
 </div>
 <ul class="list-unstyled list-inline">
-  <li><a href="<%= newUsersPath() %>" class="btn btn-primary">Create New User</a></li>
+    <li><a href="<%= newUsersPath() %>" class="btn btn-primary"><%= t("create") %> <%= t("user") %></a></li>
 </ul>
 
 <table class="table table-striped">
@@ -30,10 +30,10 @@
         <td><%= user.Admin %></td>
         <td>
           <div class="pull-right">
-            <a href="<%= usersDetailPath({ id: user.ID }) %>" class="btn btn-info">View</a>
+              <a href="<%= usersDetailPath({ id: user.ID }) %>" class="btn btn-info"><%= t("view") %></a>
             <%= if (current_user.Admin) { %>
-            <a href="<%= editUsersPath({ id: user.ID }) %>" class="btn btn-warning">Edit</a>
-            <a href="<%= usersDeletePath({ id: user.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+            <a href="<%= editUsersPath({ id: user.ID }) %>" class="btn btn-warning"><%= t("edit") %></a>
+            <a href="<%= usersDeletePath({ id: user.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger"><%= t("delete") %></a>
             <% } %>
           </div>
         </td>
