@@ -1,4 +1,24 @@
 # For more information on using i18n see: https://github.com/nicksnyder/go-i18n
+- id: venues
+  translation: "Venues"
+- id: venue
+  translation: "Venue"
+- id: bands
+  translation: "Bands"
+- id: band
+  translation: "Band"
+- id: bookers
+  translation: "Bookers"
+- id: booker
+  translation: "Booker"
+- id: users
+  translation: "Users"
+- id: user
+  translation: "User"
+- id: login
+  translation: "Entrar"
+- id: logout
+  translation: "Salir"
 - id: welcome_greeting
   translation: "Welcome to HiShow (EN)"
 - id: name
@@ -9,3 +29,11 @@
   translation: "Photo"
 - id: create_venue_title
   translation: "Create Venue"
+- id: delete
+  translation: "Delete"
+- id: venue
+  translation: "Venue"
+- id: publish
+  translation: "Accept"
+- id: add
+  translation: "Add"
