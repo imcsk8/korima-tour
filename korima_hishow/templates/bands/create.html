@@ -1,4 +1,4 @@
-<h1>Bands</h1>
+<h1><%= t("bands") %></h1>
 
 <div class="row">
     <div class="col">
@@ -16,7 +16,7 @@
 </div>
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
-        <h2>Create a new Band</h2>
+        <h2><%= t("create") %> <%= t("band") %></h2>
 
         <%= form({action: bandsCreatePath(), method: "POST", enctype: "multipart/form-data"}) { %>
 
@@ -34,7 +34,7 @@
                 <label for="content"><%= t("photo") %></label>
                 <%= f.FileTag({name: "photo_file"}) %>
             </div>
-            <button type="submit" class="btn btn-primary">Publish</button>
+            <button type="submit" class="btn btn-primary"><%= t("publish") %></button>
         <% } %>
     </div>
 </div>
