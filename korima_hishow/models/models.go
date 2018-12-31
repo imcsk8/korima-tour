@@ -19,6 +19,7 @@ type field interface {
 	ValidPhoto() bool
 	GetPhotoFileName() string
 	GetPhotoStream() binding.File
+	GetID() string
 }
 
 // DB is a connection to your database to be used
@@ -47,7 +48,7 @@ func AfterSaveFile(f field) error {
 		logrus.Infof("Invalid photo file: %v", f)
 		return nil
 	}
-	dir := filepath.Join(".", "public/uploads/photos")
+	dir := filepath.Join(".", "public/uploads/photos/"+f.GetID())
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return errors.WithStack(err)
 	}
@@ -58,4 +59,14 @@ func AfterSaveFile(f field) error {
 	defer pf.Close()
 	_, err = io.Copy(pf, f.GetPhotoStream())
 	return err
+}
+
+// GetPhotoName returns the path of the photo
+func GetPhotoName(id string, filename string) string {
+	photo_path := "/assets/images/default_image.png"
+	if filename != "" {
+		path := "/uploads/photos/" + id
+		photo_path = path + "/" + filename
+	}
+	return photo_path
 }
