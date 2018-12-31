@@ -57,6 +57,12 @@ func (b *Band) GetPhotoFileName() string {
 	return b.PhotoFile.Filename
 }
 
+// GetPhotoStream returns the file representation of the form uploaded file
 func (b *Band) GetPhotoStream() binding.File {
 	return b.PhotoFile
+}
+
+// GetID returns a string representation of the ID
+func (b *Band) GetID() string {
+	return b.ID.String()
 }
