@@ -29,6 +29,8 @@
   translation: "Foto"
 - id: create_venue_title
   translation: "Crear Venue"
+- id: create
+  translation: "Crear"
 - id: delete
   translation: "Borrar"
 - id: venue
