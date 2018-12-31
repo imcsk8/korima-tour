@@ -39,3 +39,9 @@
   translation: "Accept"
 - id: add
   translation: "Add"
+- id: view
+  translation: "View"
+- id: edit
+  translation: "Edit"
+- id: back
+  translation: "Back to"
