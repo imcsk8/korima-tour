@@ -1,0 +1,4 @@
+create_table("acl") {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("level", "integer", {})
+}
