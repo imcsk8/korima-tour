@@ -16,9 +16,9 @@
 - id: user
   translation: "User"
 - id: login
-  translation: "Entrar"
+  translation: "Login"
 - id: logout
-  translation: "Salir"
+  translation: "Logout"
 - id: welcome_greeting
   translation: "Welcome to HiShow (EN)"
 - id: name
@@ -29,6 +29,8 @@
   translation: "Photo"
 - id: create_venue_title
   translation: "Create Venue"
+- id: create
+  translation: "Create"
 - id: delete
   translation: "Delete"
 - id: venue
