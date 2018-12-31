@@ -1,7 +1,7 @@
 <h1>Bands</h1>
 <div class="row">
     <div class="col-md-3 offset-md-9">
-        <a href="<%= bandsCreatePath() %>" class="btn btn-primary">Add Band</a>
+        <a href="<%= bandsCreatePath() %>" class="btn btn-primary"><%= t("add") %> <%= t("band") %></a>
     </div>
 </div>
 <div class="row">
@@ -9,7 +9,7 @@
         <%= for (b) in bands { %>
             <hr>
             <a href="/bands/detail/<%= b.ID %>"><h1><%= b.Name %></h1></a>
-            <a href="<%= bandsDeletePath({id: b.ID}) %>" class="btn btn-danger">Delete Band</a>
+            <a href="<%= bandsDeletePath({id: b.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("band") %></a>
             <p><%= markdown(truncate(b.Description, {"size": 200})) %></p>
         <% } %>
     </div>
