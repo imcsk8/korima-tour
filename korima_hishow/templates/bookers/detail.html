@@ -1,4 +1,4 @@
-<h1>Bookers</h1>
+<h1><%= t("bookers") %></h1>
 
 <div class="row">
     <div class="col">
@@ -16,7 +16,7 @@
 </div>
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
-        <h2>Booker</h2>
+        <h2><%= t("booker") %></h2>
         <%= form({action: editBookersPath({id: booker.ID}) , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <input name="id" type="hidden" value="<%= booker.ID %>">
@@ -33,8 +33,8 @@
                 <img height="200" width="200" src="<%= booker.Photo %>">
                 <%= f.FileTag({name: "photo_file"}) %>
             </div>
-            <button type="submit" class="btn btn-primary">Publish</button>
-            <a href="<%= bookersDeletePath({id: booker.ID}) %>" class="btn btn-danger">Delete Booker  </a>
+            <button type="submit" class="btn btn-primary"><%= t("publish") %></button>
+            <a href="<%= bookersDeletePath({id: booker.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("booker") %></a>
         <% } %>
     </div>
 </div>
