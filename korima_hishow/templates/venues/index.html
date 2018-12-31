@@ -1,7 +1,7 @@
-<h1>Venues</h1>
+<h1><%= t("venues") %></h1>
 <div class="row">
     <div class="col-md-3 offset-md-9">
-        <a href="<%= venuesCreatePath() %>" class="btn btn-primary">Add Venue</a>
+        <a href="<%= venuesCreatePath() %>" class="btn btn-primary"><%= t("add") %> <%= t("venue") %></a>
     </div>
 </div>
 <div class="row">
@@ -9,7 +9,7 @@
         <%= for (v) in venues { %>
             <hr>
             <a href="/venues/detail/<%= v.ID %>"><h1><%= v.Name %></h1></a>
-            <a href="<%= venuesDeletePath({id: v.ID}) %>" class="btn btn-danger">Delete Venue</a>
+            <a href="<%= venuesDeletePath({id: v.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("venue") %></a>
             <p><%= markdown(truncate(v.Description, {"size": 200})) %></p>
         <% } %>
     </div>
