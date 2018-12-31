@@ -1,8 +1,11 @@
+<%= f.InputTag("Username") %>
 <%= f.InputTag("Firstname") %>
 <%= f.InputTag("Middlename") %>
 <%= f.InputTag("Lastname") %>
 <%= f.InputTag("Mlastname") %>
 <%= f.InputTag("Email") %>
 <%= f.InputTag("Phone") %>
-<%= f.InputTag("Admin") %>
+<%= f.InputTag("Password") %>
+<%= f.InputTag("PasswordConfirm") %>
+<%= f.CheckboxTag("IsAdmin", {unchecked: false}) %>
 <button class="btn btn-success" role="submit">Save</button>
