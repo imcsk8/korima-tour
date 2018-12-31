@@ -69,6 +69,7 @@ func App() *buffalo.App {
 		auth.GET("/list", UsersResource{&buffalo.BaseResource{}}.List)
 		auth.GET("/index", UsersResource{&buffalo.BaseResource{}}.List)
 		auth.GET("/new", UsersResource{&buffalo.BaseResource{}}.New)
+		auth.POST("/create", UsersResource{&buffalo.BaseResource{}}.Create)
 		auth.GET("/detail/{id}", UsersResource{&buffalo.BaseResource{}}.Edit)
 		auth.GET("/edit/{id}", UsersResource{&buffalo.BaseResource{}}.Edit)
 		auth.POST("/update/{id}", UsersResource{&buffalo.BaseResource{}}.Update)
