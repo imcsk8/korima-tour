@@ -17,21 +17,24 @@
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
         <h2>Booker</h2>
-        <form action="<%= editBookersPath({id: booker.ID}) %>" method="POST">
+        <%= form({action: editBookersPath({id: booker.ID}) , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <input name="id" type="hidden" value="<%= booker.ID %>">
             <div class="form-group">
-                <label for="title">Nombre</label>
+                <label for="title"><%= t("name") %></label>
                 <input type="text" name="Name" class="form-control" id="name" value="<%= booker.Name %>">
             </div>
             <div class="form-group">
-                <label for="content">Descripción</label>
+                <label for="content"><%= t("description") %></label>
                 <textarea class="form-control" name="Description" id="description"  rows="20">
                     <%= booker.Description %>
                 </textarea>
+                <label for="content"><%= t("photo") %></label>
+                <img height="200" width="200" src="<%= booker.Photo %>">
+                <%= f.FileTag({name: "photo_file"}) %>
             </div>
             <button type="submit" class="btn btn-primary">Publish</button>
             <a href="<%= bookersDeletePath({id: booker.ID}) %>" class="btn btn-danger">Delete Booker  </a>
-        </form>
+        <% } %>
     </div>
 </div>
