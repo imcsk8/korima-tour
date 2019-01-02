@@ -125,7 +125,10 @@ CREATE TABLE public.venues (
     owner_id uuid NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    photo character varying(255) DEFAULT ''::character varying
+    photo character varying(255) DEFAULT ''::character varying,
+    country character varying(255) DEFAULT ''::character varying NOT NULL,
+    state character varying(255) DEFAULT ''::character varying NOT NULL,
+    city character varying(255) DEFAULT ''::character varying NOT NULL
 );
 
 
