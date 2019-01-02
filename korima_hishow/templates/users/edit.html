@@ -2,7 +2,7 @@
   <h1>Edit User</h1>
 </div>
 
-<%= form_for(user, {action: usersUpdatePath({ id: user.ID }), method: "PUT"}) { %>
+<%= form_for(user, {action: usersUpdatePath({ id: user.ID }), method: "POST"}) { %>
   <%= partial("users/form.html") %>
-  <a href="<%= usersEditPath({ user_id: user.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+  <a href="<%= editUsersPath({ id: user.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
 <% } %>
