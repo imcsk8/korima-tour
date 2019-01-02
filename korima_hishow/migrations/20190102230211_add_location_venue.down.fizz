@@ -1,0 +1,3 @@
+drop_column("venues", "country")
+drop_column("venues", "state")
+drop_column("venues", "city")

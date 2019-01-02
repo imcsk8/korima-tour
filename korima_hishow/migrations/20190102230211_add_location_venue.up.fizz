@@ -1,0 +1,3 @@
+add_column("venues", "country", "string", {"default": ""})
+add_column("venues", "state", "string", {"default": ""})
+add_column("venues", "city", "string", {"default": ""})
