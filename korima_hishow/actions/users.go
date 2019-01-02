@@ -83,29 +83,23 @@ func (v UsersResource) New(c buffalo.Context) error {
 func (v UsersResource) Create(c buffalo.Context) error {
 	// Allocate an empty User
 	user := &models.User{}
-
 	// Bind user to the html form elements
 	if err := c.Bind(user); err != nil {
 		return errors.WithStack(err)
 	}
-
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
 	if !ok {
 		return errors.WithStack(errors.New("no transaction found"))
 	}
-
 	if c.Param("IsAdmin") == "true" {
 		user.Admin = true
 	} else {
 		user.Admin = false
 	}
-
-	logrus.Infof("BEFORE CREATE")
 	// Validate the data from the HTML form
 	//verrs, err := user.Create(tx)
 	verrs, err := tx.ValidateAndCreate(user)
-	logrus.Infof("AFTER CREATE: verrs: %v\n ERR: %v", verrs, err)
 	if err != nil {
 		return errors.WithStack(err)
 	}
@@ -124,7 +118,7 @@ func (v UsersResource) Create(c buffalo.Context) error {
 
 	logrus.Infof("USER ADDED SUCCESFULLY")
 	// and redirect to the users index page
-	return c.Redirect(201, "/users")
+	return c.Redirect(301, "/users")
 }
 
 // Edit renders a edit form for a User. This function is
