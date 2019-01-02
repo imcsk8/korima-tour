@@ -41,6 +41,7 @@ type UsernameNotTaken struct {
 	tx    *pop.Connection
 }
 
+// Check for emails
 type EmailNotTaken struct {
 	Name  string
 	Field string
@@ -79,22 +80,40 @@ func (u *User) Create(tx *pop.Connection) (*validate.Errors, error) {
 func (u *User) Validate(tx *pop.Connection) (*validate.Errors, error) {
 	return validate.Validate(
 		&validators.StringIsPresent{Field: u.Username, Name: "Username"},
-		&UsernameNotTaken{Name: "Username", Field: u.Username, tx: tx},
+		//&UsernameNotTaken{Name: "Username", Field: u.Username, tx: tx},
+
 		/*&validators.StringIsPresent{Field: u.Firstname, Name: "Firstname"},
-		&validators.StringIsPresent{Field: u.Middlename, Name: "Middlename"},
-		&validators.StringIsPresent{Field: u.Lastname, Name: "Lastname"},
-		&validators.StringIsPresent{Field: u.Mlastname, Name: "Mlastname"},
-		&validators.StringIsPresent{Field: u.Email, Name: "Email"},
-		&validators.StringIsPresent{Field: u.Phone, Name: "Phone"},
+		  &validators.StringIsPresent{Field: u.Middlename, Name: "Middlename"},
+		  &validators.StringIsPresent{Field: u.Lastname, Name: "Lastname"},
+		  &validators.StringIsPresent{Field: u.Mlastname, Name: "Mlastname"},
+		  &validators.StringIsPresent{Field: u.Email, Name: "Email"},
+		  &validators.StringIsPresent{Field: u.Phone, Name: "Phone"},
 		*/
 		&validators.EmailIsPresent{Name: "Email", Field: u.Email},
-		&EmailNotTaken{Name: "Email", Field: u.Email, tx: tx},
+		//&EmailNotTaken{Name: "Email", Field: u.Email, tx: tx},
 	), nil
 }
 
 // ValidateCreate gets run every time you call "pop.ValidateAndCreate" method.
 // This method is not required and may be deleted.
 func (u *User) ValidateCreate(tx *pop.Connection) (*validate.Errors, error) {
+
+	return validate.Validate(
+		//&validators.StringIsPresent{Field: u.Username, Name: "Username"},
+		//&UsernameNotTaken{Name: "Username", Field: u.Username, tx: tx},
+		/*&validators.StringIsPresent{Field: u.Firstname, Name: "Firstname"},
+		  &validators.StringIsPresent{Field: u.Middlename, Name: "Middlename"},
+		  &validators.StringIsPresent{Field: u.Lastname, Name: "Lastname"},
+		  &validators.StringIsPresent{Field: u.Mlastname, Name: "Mlastname"},
+		  &validators.StringIsPresent{Field: u.Email, Name: "Email"},
+		  &validators.StringIsPresent{Field: u.Phone, Name: "Phone"},
+		*/
+		//&validators.EmailIsPresent{Name: "Email", Field: u.Email},
+		// TODO: fix validators, for some fucking reason if this two are uncommented at the same time the transaction fails
+		//&EmailNotTaken{Name: "Email", Field: u.Email, tx: tx},
+		&UsernameNotTaken{Name: "Username", Field: u.Username, tx: tx},
+	), nil
+
 	return validate.NewErrors(), nil
 }
 
