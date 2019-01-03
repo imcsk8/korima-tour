@@ -128,7 +128,8 @@ CREATE TABLE public.venues (
     photo character varying(255) DEFAULT ''::character varying,
     country character varying(255) DEFAULT ''::character varying NOT NULL,
     state character varying(255) DEFAULT ''::character varying NOT NULL,
-    city character varying(255) DEFAULT ''::character varying NOT NULL
+    city character varying(255) DEFAULT ''::character varying NOT NULL,
+    location_text character varying(255) DEFAULT ''::character varying NOT NULL
 );
 
 
