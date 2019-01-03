@@ -1,0 +1,1 @@
+drop_column("venues", "location_text")
