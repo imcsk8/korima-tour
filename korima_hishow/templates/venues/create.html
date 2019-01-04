@@ -23,6 +23,7 @@
                 <label for="title"><%= t("name") %></label>
                 <input type="text" name="Name" class="form-control" id="name" value="<%= venue.Name %>">
             </div>
+            <%= partial("location_form.html") %>
             <div class="form-group">
                 <label for="content"><%= t("description") %></label>
                 <textarea class="form-control" name="Description" id="description"  rows="10">
