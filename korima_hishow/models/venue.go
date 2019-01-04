@@ -4,22 +4,26 @@ import (
 	"time"
 
 	"github.com/gobuffalo/buffalo/binding"
-	//"github.com/gobuffalo/logger"
 	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/pop/nulls"
 	uuid "github.com/gobuffalo/uuid"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
 )
 
 type Venue struct {
-	ID          uuid.UUID    `json:"id" db:"id"`
-	CreatedAt   time.Time    `json:"created_at" db:"created_at"`
-	UpdatedAt   time.Time    `json:"updated_at" db:"updated_at"`
-	Name        string       `json:"name" db:"name"`
-	Description string       `json:"description" db:"description"`
-	Photo       string       `json:"photo" db:"photo"`
-	PhotoFile   binding.File `json:"photo_file" db:"-" form:"photo_file"`
-	OwnerID     uuid.UUID    `json:"owner_id" db:"owner_id"`
+	ID           uuid.UUID    `json:"id" db:"id"`
+	CreatedAt    time.Time    `json:"created_at" db:"created_at"`
+	UpdatedAt    time.Time    `json:"updated_at" db:"updated_at"`
+	Name         string       `json:"name" db:"name"`
+	Description  string       `json:"description" db:"description"`
+	Photo        string       `json:"photo" db:"photo"`
+	LocationText nulls.String `json:"location_text" db:"location_text"`
+	Country      nulls.Int    `json:"country" db:"country"`
+	State        nulls.Int    `json:"state" db:"state"`
+	City         nulls.Int    `json:"city" db:"city"`
+	PhotoFile    binding.File `json:"photo_file" db:"-" form:"photo_file"`
+	OwnerID      uuid.UUID    `json:"owner_id" db:"owner_id"`
 }
 
 type Venues []Venue
