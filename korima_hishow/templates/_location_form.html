@@ -1,0 +1,75 @@
+<div class="form-group">
+    <script language="javascript">
+    <!--
+        var states;
+        var current_state = "";
+        var states_id = [];
+        var cities_id = [];
+
+        // Set the location info if the form is for updates
+        function load_location(country, state, city) {
+            current_state = state;
+            set_location_info(city);
+            show_cities(state);
+            $('#select_states').selectedIndex = 3;
+            $('#select_cities').selectedIndex = 2;
+        }   
+
+        // Fill the states select field for cities
+        function get_states(country) {
+            $.getJSON("/assets/json/states-cities-" + country + ".json", function( data ) {
+                states = data;
+                i = 0;
+                $.each(states, function(key, value) {
+                    $("#select_states").append('<option value="' + key + '">' + key + '</option>');
+                    states_id[key] = i++;
+                });
+            });
+
+        }
+
+        // Fill the cities select field by state
+        function show_cities(state) {
+            currstate = eval("states." + state);
+            current_state = state;
+            $('#select_cities').text("");
+            i = 0;
+            $.each(currstate, function() {
+                $("#select_cities").append('<option value="' + this + '">' + this + '</option>');
+                cities_id[this] = i++;
+            });
+        }
+
+        // Set the location fields
+        // TODO: Add more countries but currently we're only in México
+        function set_location_info(city) {
+            $("#location_text").val(city + ", " + current_state);
+            $("#state").val(states_id[current_state]);
+            $("#city").val(cities_id[city]);
+        }
+        get_states("mx")
+    //-->
+    </script>
+    <input type="hidden" id="location_text" name="LocationText" value="" />
+    <input type="hidden" id="country" name="Country" value="1" />
+    <input type="hidden" id="state" name="State" value="" />
+    <input type="hidden" id="city" name="City" value="" />
+    <label for="title"><%= t("country") %></label>
+    <div class="location_select">
+        <!-- Dropdown countries -->
+        <select name="countries">
+            <option value="1">México</option>
+        </select>
+    </div>
+    <label for="title"><%= t("state") %></label>
+    <div class="location_select">
+        <select onClick="show_cities(this[this.selectedIndex].value)" id="select_states" name="select_states">
+
+        </select>
+    </div>
+    <label for="title"><%= t("city") %></label>
+    <div class="location_select">
+        <select onClick="set_location_info(this[this.selectedIndex].value)" id="select_cities" name="select_cities">
+        </select>
+    </div>
+</div>
