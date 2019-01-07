@@ -11,14 +11,18 @@ import (
 )
 
 type Booker struct {
-	ID          uuid.UUID    `json:"id" db:"id"`
-	CreatedAt   time.Time    `json:"created_at" db:"created_at"`
-	UpdatedAt   time.Time    `json:"updated_at" db:"updated_at"`
-	Name        string       `json:"title" db:"name"`
-	Description string       `json:"content" db:"description"`
-	Photo       string       `json:"photo" db:"photo"`
-	PhotoFile   binding.File `json:"photo_file" db:"-" form:"photo_file"`
-	OwnerID     uuid.UUID    `json:"owner_id" db:"owner_id"`
+	ID           uuid.UUID    `json:"id" db:"id"`
+	CreatedAt    time.Time    `json:"created_at" db:"created_at"`
+	UpdatedAt    time.Time    `json:"updated_at" db:"updated_at"`
+	Name         string       `json:"title" db:"name"`
+	Description  string       `json:"content" db:"description"`
+	Photo        string       `json:"photo" db:"photo"`
+	LocationText nulls.String `json:"location_text" db:"location_text"`
+	Country      nulls.Int    `json:"country" db:"country"`
+	State        nulls.Int    `json:"state" db:"state"`
+	City         nulls.Int    `json:"city" db:"city"`
+	PhotoFile    binding.File `json:"photo_file" db:"-" form:"photo_file"`
+	OwnerID      uuid.UUID    `json:"owner_id" db:"owner_id"`
 }
 
 type Bookers []Booker
