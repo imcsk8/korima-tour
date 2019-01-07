@@ -1,0 +1,4 @@
+add_column("bands", "country", "integer", {"default": 1, "null": true} )
+add_column("bands", "state", "integer", {"default": 9, "null": true})
+add_column("bands", "city", "integer", {"default": 15, "null": true})
+add_column("bands", "location_text", "string", {"default": "", "null": true})

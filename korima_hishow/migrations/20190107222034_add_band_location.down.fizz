@@ -1,0 +1,4 @@
+drop_column("bands", "country")
+drop_column("bands", "state")
+drop_column("bands", "city")
+drop_column("bands", "location_text")
