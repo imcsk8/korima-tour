@@ -5,6 +5,7 @@ import (
 
 	"github.com/gobuffalo/buffalo/binding"
 	"github.com/gobuffalo/pop"
+	"github.com/gobuffalo/pop/nulls"
 	uuid "github.com/gobuffalo/uuid"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
