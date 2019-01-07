@@ -1,0 +1,4 @@
+add_column("bookers", "country", "integer", {"default": 1, "null": true} )
+add_column("bookers", "state", "integer", {"default": 9, "null": true})
+add_column("bookers", "city", "integer", {"default": 15, "null": true})
+add_column("bookers", "location_text", "string", {"default": "", "null": true})

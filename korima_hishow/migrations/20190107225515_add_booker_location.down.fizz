@@ -1,0 +1,4 @@
+drop_column("bookers", "country")
+drop_column("bookers", "state")
+drop_column("bookers", "city")
+drop_column("bookers", "location_text")
