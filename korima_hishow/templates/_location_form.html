@@ -23,11 +23,8 @@
                 if(detail_form) {
                     set_location_info(current_city);
                     show_cities(current_state);
-                    console.log("current STATE: " + current_state );
-                    //TODO: Fix state index
-                    $('#select_states').selectedIndex = current_state;
-                    console.log("STATES curent index: " + $('#select_states').selectedIndex )
-                    $('#select_cities').selectedIndex = current_city;
+                    $('#select_states')[0].selectedIndex = current_state;
+                    $('#select_cities')[0].selectedIndex = current_city;
                 }
             });
 
