@@ -24,6 +24,14 @@
                 <label for="title"><%= t("name") %></label>
                 <input type="text" name="Name" class="form-control" id="name" value="<%= booker.Name %>">
             </div>
+
+            <%= partial("location_form.html") %>
+            <script language="javascript">
+            <!--
+                $(document).ready(set_detail_location(<%= booker.Country %>, <%= booker.State %>, <%= booker.City %>)); 
+            //-->
+            </script>
+
             <div class="form-group">
                 <label for="content"><%= t("description") %></label>
                 <textarea class="form-control" name="Description" id="description"  rows="20">
