@@ -58,7 +58,11 @@ CREATE TABLE public.bands (
     owner_id uuid NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    photo character varying(255) DEFAULT ''::character varying
+    photo character varying(255) DEFAULT ''::character varying,
+    country integer DEFAULT 1,
+    state integer DEFAULT 9,
+    city integer DEFAULT 15,
+    location_text character varying(255) DEFAULT ''::character varying
 );
 
 
