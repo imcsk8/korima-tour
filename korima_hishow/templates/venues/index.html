@@ -9,7 +9,9 @@
         <%= for (v) in venues { %>
             <hr>
             <a href="/venues/detail/<%= v.ID %>"><h1><%= v.Name %></h1></a>
+            <%= if (current_user = v.OwnerID) { %>
             <a href="<%= venuesDeletePath({id: v.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("venue") %></a>
+            <% } %>
             <p><%= markdown(truncate(v.Description, {"size": 200})) %></p>
         <% } %>
     </div>
