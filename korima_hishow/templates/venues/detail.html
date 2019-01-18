@@ -42,8 +42,10 @@
 
 
             </div>
+            <%= if (current_user = v.OwnerID) { %>
             <button type="submit" class="btn btn-primary"><%= t("publish") %></button>
             <a href="<%= venuesDeletePath({id: venue.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("venue") %></a>
+            <% } %>
         <% } %>
     </div>
 </div>
