@@ -41,8 +41,10 @@
                 <img height="200" width="200" src="<%= booker.Photo %>">
                 <%= f.FileTag({name: "photo_file"}) %>
             </div>
+            <%= if (current_user.ID.String() == venue.OwnerID.String()) { %>
             <button type="submit" class="btn btn-primary"><%= t("publish") %></button>
             <a href="<%= bookersDeletePath({id: booker.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("booker") %></a>
+            <% } %>
         <% } %>
     </div>
 </div>
