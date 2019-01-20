@@ -93,15 +93,13 @@ func VenuesDelete(c buffalo.Context) error {
 
 	// Check if we own the venue before deleting
 	current_user := c.Value("current_user").(*models.User)
-	if venue.OwnerID == current_user.ID {
+	allowed, flashkey, msg := current_user.AuthorizeDelete(venue.OwnerID, c)
+	if allowed {
 		if err := tx.Destroy(venue); err != nil {
 			return errors.WithStack(err)
 		}
-		c.Flash().Add("success", "Venue was successfully deleted.")
-	} else {
-		c.Flash().Add("error", "You can't delete this venue.")
 	}
-
+	c.Flash().Add(flashkey, msg)
 	return c.Redirect(302, "/venues/index")
 }
 
