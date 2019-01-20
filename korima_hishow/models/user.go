@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
 	"github.com/gobuffalo/pop/nulls"
 	"github.com/gobuffalo/uuid"
@@ -164,4 +165,14 @@ func (u *User) Authorize(tx *pop.Connection) error {
 		return errors.New("Invalid Password")
 	}
 	return nil
+}
+
+//AuthorizeDelete checks if the user has deletion privileges on the item
+func (u *User) AuthorizeDelete(ownerID uuid.UUID, c buffalo.Context) (bool, string, string) {
+	// Check if we own the venue before deleting
+	if ownerID == u.ID {
+		return true, "success", "Item succesfully Deleted"
+	} else {
+		return false, "error", "You can't delete this item."
+	}
 }
