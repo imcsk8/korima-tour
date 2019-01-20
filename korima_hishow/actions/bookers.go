@@ -90,10 +90,15 @@ func BookersDelete(c buffalo.Context) error {
 	if err := tx.Find(booker, c.Param("id")); err != nil {
 		return c.Error(404, err)
 	}
-	if err := tx.Destroy(booker); err != nil {
-		return errors.WithStack(err)
+	// Check if we own the booker before deleting
+	current_user := c.Value("current_user").(*models.User)
+	allowed, flashkey, msg := current_user.AuthorizeDelete(booker.OwnerID, c)
+	if allowed {
+		if err := tx.Destroy(booker); err != nil {
+			return errors.WithStack(err)
+		}
 	}
-	c.Flash().Add("success", "Booker was successfully deleted.")
+	c.Flash().Add(flashkey, msg)
 	return c.Redirect(302, "/bookers/index")
 }
 
