@@ -9,7 +9,9 @@
         <%= for (b) in bands { %>
             <hr>
             <a href="/bands/detail/<%= b.ID %>"><h1><%= b.Name %></h1></a>
+            <%= if (current_user.ID.String() == b.OwnerID.String()) { %>
             <a href="<%= bandsDeletePath({id: b.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("band") %></a>
+            <% } %>
             <p><%= markdown(truncate(b.Description, {"size": 200})) %></p>
         <% } %>
     </div>
