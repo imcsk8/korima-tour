@@ -90,10 +90,15 @@ func BandsDelete(c buffalo.Context) error {
 	if err := tx.Find(band, c.Param("id")); err != nil {
 		return c.Error(404, err)
 	}
-	if err := tx.Destroy(band); err != nil {
-		return errors.WithStack(err)
+	// Check if we own the band before deleting
+	current_user := c.Value("current_user").(*models.User)
+	allowed, flashkey, msg := current_user.AuthorizeDelete(band.OwnerID, c)
+	if allowed {
+		if err := tx.Destroy(band); err != nil {
+			return errors.WithStack(err)
+		}
 	}
-	c.Flash().Add("success", "Band was successfully deleted.")
+	c.Flash().Add(flashkey, msg)
 	return c.Redirect(302, "/bands/index")
 }
 
