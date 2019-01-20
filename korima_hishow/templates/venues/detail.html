@@ -42,7 +42,7 @@
 
 
             </div>
-            <%= if (current_user = v.OwnerID) { %>
+            <%= if (current_user.ID.String() == venue.OwnerID.String()) { %>
             <button type="submit" class="btn btn-primary"><%= t("publish") %></button>
             <a href="<%= venuesDeletePath({id: venue.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("venue") %></a>
             <% } %>
