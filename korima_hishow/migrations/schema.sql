@@ -137,7 +137,10 @@ CREATE TABLE public.venues (
     country integer,
     state integer,
     city integer,
-    location_text character varying(255) DEFAULT ''::character varying NOT NULL
+    location_text character varying(255) DEFAULT ''::character varying NOT NULL,
+    address character varying(255) DEFAULT ''::character varying NOT NULL,
+    zip character varying(255) DEFAULT ''::character varying NOT NULL,
+    phone character varying(255) DEFAULT ''::character varying NOT NULL
 );
 
 
