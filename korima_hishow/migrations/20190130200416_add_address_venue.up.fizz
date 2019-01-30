@@ -1,0 +1,3 @@
+add_column("venues", "address", "string", {"default": ""})
+add_column("venues", "zip", "string", {"default": ""})
+add_column("venues", "phone", "string", {"default": ""})

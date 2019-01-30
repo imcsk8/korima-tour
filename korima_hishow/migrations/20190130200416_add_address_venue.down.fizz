@@ -1,0 +1,3 @@
+drop_column("venues", "address")
+drop_column("venues", "zip")
+drop_column("venues", "phone")
