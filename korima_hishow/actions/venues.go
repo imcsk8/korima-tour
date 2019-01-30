@@ -114,8 +114,16 @@ func VenuesDetail(c buffalo.Context) error {
 	if err := tx.Find(owner, venue.OwnerID); err != nil {
 		return c.Error(404, err)
 	}
+	// Get current user
+	current_user := c.Value("current_user").(*models.User)
 	venue.Photo = models.GetPhotoName(venue.ID.String(), venue.Photo)
 	c.Set("venue", venue)
-	c.Set("owner", owner)
-	return c.Render(200, r.HTML("venues/detail.html"))
+	// Choose template
+	if venue.OwnerID == current_user.ID {
+		c.Set("owner", owner)
+		return c.Render(200, r.HTML("venues/detail.html"))
+	} else {
+		return c.Render(200, r.HTML("venues/show.html"))
+
+	}
 }
