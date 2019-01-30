@@ -20,6 +20,9 @@ type Venue struct {
 	Photo        string       `json:"photo" db:"photo"`
 	LocationText nulls.String `json:"location_text" db:"location_text"`
 	Country      nulls.Int    `json:"country" db:"country"`
+	Address      nulls.String `json:"address" db:"address"`
+	Zip          nulls.String `json:"zip" db:"zip"`
+	Phone        nulls.String `json:"phone" db:"phone"`
 	State        nulls.Int    `json:"state" db:"state"`
 	City         nulls.Int    `json:"city" db:"city"`
 	PhotoFile    binding.File `json:"photo_file" db:"-" form:"photo_file"`
