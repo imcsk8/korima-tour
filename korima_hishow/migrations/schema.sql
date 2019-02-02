@@ -48,6 +48,22 @@ CREATE TABLE public.acl (
 ALTER TABLE public.acl OWNER TO korima_pg;
 
 --
+-- Name: band_venue_event_request; Type: TABLE; Schema: public; Owner: korima_pg
+--
+
+CREATE TABLE public.band_venue_event_request (
+    id uuid NOT NULL,
+    band_id uuid NOT NULL,
+    venue_id uuid NOT NULL,
+    request_date date NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.band_venue_event_request OWNER TO korima_pg;
+
+--
 -- Name: bands; Type: TABLE; Schema: public; Owner: korima_pg
 --
 
@@ -152,6 +168,14 @@ ALTER TABLE public.venues OWNER TO korima_pg;
 
 ALTER TABLE ONLY public.acl
     ADD CONSTRAINT acl_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: band_venue_event_request band_venue_event_request_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
+--
+
+ALTER TABLE ONLY public.band_venue_event_request
+    ADD CONSTRAINT band_venue_event_request_pkey PRIMARY KEY (id);
 
 
 --
