@@ -57,7 +57,8 @@ CREATE TABLE public.band_venue_event_request (
     venue_id uuid NOT NULL,
     request_date date NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    owner_id uuid NOT NULL
 );
 
 
