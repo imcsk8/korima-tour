@@ -109,6 +109,15 @@ func App() *buffalo.App {
 		bookersGroup.GET("/delete/{id}", BookersDelete)
 		bookersGroup.GET("/detail/{id}", BookersDetail)
 
+		bandVenueEventRequestGroup := app.Group("/band_venue_event_requests")
+		bandVenueEventRequestGroup.GET("/index", BandVenueEventRequestIndex)
+		bandVenueEventRequestGroup.GET("/create", BandVenueEventRequestCreateShow)
+		bandVenueEventRequestGroup.POST("/create", BandVenueEventRequestCreate)
+		bandVenueEventRequestGroup.GET("/edit/{id}", BandVenueEventRequestDetail)
+		bandVenueEventRequestGroup.POST("/edit/{id}", BandVenueEventRequestEdit)
+		bandVenueEventRequestGroup.GET("/delete/{id}", BandVenueEventRequestDelete)
+		bandVenueEventRequestGroup.GET("/detail/{id}", BandVenueEventRequestDetail)
+
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 
