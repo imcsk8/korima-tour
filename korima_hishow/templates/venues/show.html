@@ -16,9 +16,41 @@
 </div>
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
-        <h2><%= venue.Name %> <button type="submit" class="btn btn-primary"><%= t("book") %></button> </h2>
+        <script language="javascript">
+            function Book(band, requested_date) {
+                alert("Booking band " + band + " for date " + requested_date)
+            }
+        </script>
+        <h2><%= venue.Name %> <button OnClick="ToggleBooking()" type="submit" class="btn btn-primary"><%= t("book") %></button> </h2>
+        <div id="band_block" style="display: none">
+            <style>
+                div.ui-datepicker {
+                        font-size: 62.5%;
+                }
+            </style>
+            <h4>Seleccionar banda:</h4>
+            <ul>
+              <%= for (band) in bands { %>
+              <li><%= band.ID %> </li>
+              <% } %>
+            </ul>
+
+            <h4>Fecha:</h4>
+            <div id="datepicker"></div>
+            <script>
+              $(document).ready(function() {
+                  console.log("document loaded, loading datepicker");
+                  $( "#datepicker" ).datepicker();
+              });
+
+              function ToggleBooking() {
+                  $('#band_block').toggle("fast");
+              }
+            </script>
+        </div>
+
         <img height="200" width="200" src="<%= venue.Photo %>">
-        <%= form({action: editVenuesPath({id: venue.ID}) , method: "POST", enctype: "multipart/form-data"}) { %>
+        <%= form({action: bandVenueEventRequestsCreatePath() , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <input name="id" type="hidden" value="<%= venue.ID %>">
             <%= venue.LocationText %> <br />
