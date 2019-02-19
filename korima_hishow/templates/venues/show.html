@@ -28,14 +28,14 @@
                         font-size: 62.5%;
                 }
             </style>
-            <h4>Seleccionar banda:</h4>
+            <h4><%= t("select_band") %>:</h4>
             <ul>
               <%= for (band) in bands { %>
-              <li><%= band.ID %> </li>
+              <li><%= band.Name %> </li>
               <% } %>
             </ul>
 
-            <h4>Fecha:</h4>
+            <h4><%= t("date") %>:</h4>
             <div id="datepicker"></div>
             <script>
               $(document).ready(function() {
