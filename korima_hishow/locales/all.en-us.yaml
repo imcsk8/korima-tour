@@ -45,3 +45,7 @@
   translation: "Edit"
 - id: back
   translation: "Back to"
+- id: select_band
+  translation: "Select Band"
+- id: date
+  translation: "Date"
