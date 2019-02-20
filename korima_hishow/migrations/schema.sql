@@ -48,10 +48,10 @@ CREATE TABLE public.acl (
 ALTER TABLE public.acl OWNER TO korima_pg;
 
 --
--- Name: band_venue_event_request; Type: TABLE; Schema: public; Owner: korima_pg
+-- Name: band_venue_event_requests; Type: TABLE; Schema: public; Owner: korima_pg
 --
 
-CREATE TABLE public.band_venue_event_request (
+CREATE TABLE public.band_venue_event_requests (
     id uuid NOT NULL,
     band_id uuid NOT NULL,
     venue_id uuid NOT NULL,
