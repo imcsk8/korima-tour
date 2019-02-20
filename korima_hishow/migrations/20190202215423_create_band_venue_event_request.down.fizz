@@ -1,1 +1,0 @@
-drop_table("band_venue_event_request")

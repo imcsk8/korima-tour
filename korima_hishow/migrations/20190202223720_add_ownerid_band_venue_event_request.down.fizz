@@ -1,1 +1,0 @@
-drop_column("band_venue_event_request", "owner_id")

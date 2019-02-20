@@ -1,7 +1,0 @@
-create_table("band_venue_event_request") {
-    t.Column("id", "uuid", {"primary": true})
-    t.Column("band_id", "uuid", {})
-    t.Column("venue_id", "uuid", {})
-    t.Column("request_date", "date", {})
-}
-   
