@@ -36,9 +36,12 @@
                 <input type="text" id="requested_date" onclick="$('#requested_date').datepicker();$('#requested_date').datepicker('show');">
                 <script>
                     var currband = '';
+                    // ToggleBooking show/hides the booking block
                     function ToggleBooking() {
                       $('#band_block').toggle("fast");
                     }
+
+                    // SelectBand selects a band to be booked
                     function SelectBand(id, name) {
                       if (currband != id) {
                         if (currband != '') {
@@ -48,8 +51,25 @@
                         currband = id;
                       }
                     }
-                    function Book(band, requested_date) {
-                      alert("Booking band " + currband + " for date " + $('#requested_date').val())
+
+                    // Book request booking for a band
+                    function Book() {
+                        if (currband == '') {
+                            alert("<%= t("must_select_a_band_to_book") %>");
+                            return;
+                        }
+                        $.post( "<%= bandVenueEventRequestsCreatePath() %>", {BandID: currband, VenueID: "<%= venue.ID %>", RequestDate: $('#requested_date').val()}, function() {
+                          console.log("TODO: create success notification" );
+                        })
+                          .done(function() {
+                            console.log("TODO: Create local session notification");
+                          })
+                          .fail(function() {
+                            console.log( "TODO: create error notification" );
+                          })
+                          .always(function() {
+                            console.log( "TODO: create finished notification" );
+                         });
                     }
                 </script>
             </span>
@@ -62,6 +82,7 @@
         <br />
         <br />
         <img height="200" width="200" src="<%= venue.Photo %>">
+        <!-- TODO fix this block -->
         <%= form({action: bandVenueEventRequestsCreatePath() , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <input name="id" type="hidden" value="<%= venue.ID %>">
