@@ -16,39 +16,51 @@
 </div>
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
-        <script language="javascript">
-            function Book(band, requested_date) {
-                alert("Booking band " + band + " for date " + requested_date)
-            }
-        </script>
         <h2><%= venue.Name %> <button OnClick="ToggleBooking()" type="submit" class="btn btn-primary"><%= t("book") %></button> </h2>
-        <div id="band_block" style="display: none">
+        <div id="band_block" style="display: none;">
             <style>
                 div.ui-datepicker {
                         font-size: 62.5%;
                 }
             </style>
-            <h4><%= t("select_band") %>:</h4>
-            <ul>
-              <%= for (band) in bands { %>
-              <li><%= band.Name %> </li>
-              <% } %>
-            </ul>
-
-            <h4><%= t("date") %>:</h4>
-            <div id="datepicker"></div>
-            <script>
-              $(document).ready(function() {
-                  console.log("document loaded, loading datepicker");
-                  $( "#datepicker" ).datepicker();
-              });
-
-              function ToggleBooking() {
-                  $('#band_block').toggle("fast");
-              }
-            </script>
+            <span style="float: left;">
+                <label><%= t("select_band") %>:</label>
+                <ul>
+                  <%= for (band) in bands { %>
+                  <li><a id="<%= band.ID %>" OnClick="SelectBand('<%= band.ID %>', '<%= band.Name %>')"><%= band.Name %></a></li>
+                  <% } %>
+                </ul>
+            </span>
+            <span style="float: center;">
+                <label><%= t("date") %>:</label>
+                <input type="text" id="requested_date" onclick="$('#requested_date').datepicker();$('#requested_date').datepicker('show');">
+                <script>
+                    var currband = '';
+                    function ToggleBooking() {
+                      $('#band_block').toggle("fast");
+                    }
+                    function SelectBand(id, name) {
+                      if (currband != id) {
+                        if (currband != '') {
+                          $('#'+currband).animate({color:'black'},10);
+                        }
+                        $('#'+id).animate({color:'green'},10);
+                        currband = id;
+                      }
+                    }
+                    function Book(band, requested_date) {
+                      alert("Booking band " + currband + " for date " + $('#requested_date').val())
+                    }
+                </script>
+            </span>
+            <span style="float: right;">
+                <button OnClick="Book()" type="submit" class="btn btn-secondary"><%= t("send") %></button>
+            </span>
         </div>
-
+        <br />
+        <br />
+        <br />
+        <br />
         <img height="200" width="200" src="<%= venue.Photo %>">
         <%= form({action: bandVenueEventRequestsCreatePath() , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
