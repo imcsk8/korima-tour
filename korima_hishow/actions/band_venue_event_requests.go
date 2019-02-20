@@ -55,9 +55,9 @@ func BandVenueEventRequestsCreate(c buffalo.Context) error {
 		return c.Render(422, r.HTML("band_venue_event_requests/create"))
 	}
 	// If there are no errors set a success message
-	c.Flash().Add("success", "New BandVenueEventRequest added successfully.")
+	c.Flash().Add("success", "Booking has been successfully requested .")
 	// and redirect to the index page
-	return c.Redirect(302, "/band_venue_event_requests/index")
+	return c.Redirect(302, "/venues/index")
 }
 
 // BandVenueEventRequestsEdit default implementation.
