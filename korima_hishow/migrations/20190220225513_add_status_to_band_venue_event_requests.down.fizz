@@ -1,0 +1,1 @@
+drop_column("band_venue_event_requests", "status")
