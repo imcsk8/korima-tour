@@ -58,11 +58,12 @@ CREATE TABLE public.band_venue_event_requests (
     request_date date NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    owner_id uuid NOT NULL
+    owner_id uuid NOT NULL,
+    status integer DEFAULT 0 NOT NULL
 );
 
 
-ALTER TABLE public.band_venue_event_request OWNER TO korima_pg;
+ALTER TABLE public.band_venue_event_requests OWNER TO korima_pg;
 
 --
 -- Name: bands; Type: TABLE; Schema: public; Owner: korima_pg
@@ -172,10 +173,10 @@ ALTER TABLE ONLY public.acl
 
 
 --
--- Name: band_venue_event_request band_venue_event_request_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
+-- Name: band_venue_event_requests band_venue_event_request_pkey; Type: CONSTRAINT; Schema: public; Owner: korima_pg
 --
 
-ALTER TABLE ONLY public.band_venue_event_request
+ALTER TABLE ONLY public.band_venue_event_requests
     ADD CONSTRAINT band_venue_event_request_pkey PRIMARY KEY (id);
 
 
