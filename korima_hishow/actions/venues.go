@@ -5,6 +5,7 @@ import (
 	"github.com/gobuffalo/pop"
 	"github.com/imcsk8/korima-tour/korima_hishow/models"
 	"github.com/pkg/errors"
+	"github.com/sirupsen/logrus"
 )
 
 // VenuesIndex default implementation.
@@ -118,6 +119,17 @@ func VenuesDetail(c buffalo.Context) error {
 	current_user := c.Value("current_user").(*models.User)
 	venue.Photo = models.GetPhotoName(venue.ID.String(), venue.Photo)
 	c.Set("venue", venue)
+
+	// Check for the users bands
+	var bands models.Bands
+	query := tx.RawQuery("SELECT bands.city, bands.country, bands.created_at, bands.description, bands.id, bands.location_text, bands.name, bands.owner_id, bands.photo, bands.state, bands.updated_at FROM bands AS bands WHERE owner_id = ?", current_user.ID)
+	err := query.All(&bands)
+	if err != nil {
+		c.Flash().Add("Warning", "This user does not have bands to book")
+	}
+	logrus.Infof("BANDS, %v\nError: %v", bands, err)
+
+	c.Set("bands", bands)
 	// Choose template
 	if venue.OwnerID == current_user.ID {
 		c.Set("owner", owner)
