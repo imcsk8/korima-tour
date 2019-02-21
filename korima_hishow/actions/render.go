@@ -3,6 +3,7 @@ package actions
 import (
 	"github.com/gobuffalo/buffalo/render"
 	"github.com/gobuffalo/packr"
+	"github.com/imcsk8/korima-tour/korima_hishow/models"
 )
 
 var r *render.Engine
@@ -22,6 +23,7 @@ func init() {
 			// uncomment for non-Bootstrap form helpers:
 			// "form":     plush.FormHelper,
 			// "form_for": plush.FormForHelper,
+			"GetPhotoName": models.GetPhotoName,
 		},
 	})
 }
