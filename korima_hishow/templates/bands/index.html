@@ -8,7 +8,7 @@
     <div class="col-md-8">
         <%= for (b) in bands { %>
             <hr>
-            <a href="/bands/detail/<%= b.ID %>"><h1><%= b.Name %></h1></a>
+            <a href="/bands/detail/<%= b.ID %>"><h1><img class="index_image" src="<%= GetPhotoName(b.ID.String(), b.Photo) %>">&nbsp;<%= b.Name %></h1></a>
             <%= if (current_user.ID.String() == b.OwnerID.String()) { %>
             <a href="<%= bandsDeletePath({id: b.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("band") %></a>
             <% } %>
