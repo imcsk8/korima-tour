@@ -1,18 +1,26 @@
-<h1><%= t("bookers") %></h1>
-<div class="row">
-    <div class="col-md-3 offset-md-9">
-        <a href="<%= bookersCreatePath() %>" class="btn btn-primary"><%= t("add") %> <%= t("booker") %></a>
+<div class="row header">
+    <div class="col ">
+        <span class="h1"><%= t("bookers") %></span>
+    </div>
+    <div class="col offset-sm-8">
+        <a href="<%= bookersCreatePath() %>" class="btn btn-primary"><%= t("add") %></a>
     </div>
 </div>
 <div class="row">
     <div class="col-md-8">
         <%= for (b) in bookers { %>
-            <hr>
-            <a href="/bookers/detail/<%= b.ID %>"><h1><img class="index_image" src="<%= GetPhotoName(b.ID.String(), b.Photo) %>">&nbsp;<%= b.Name %></h1></a>
-            <%= if (current_user.ID.String() == b.OwnerID.String()) { %>
-            <a href="<%= bookersDeletePath({id: b.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("booker") %></a>
-            <% } %>
-            <p><%= markdown(truncate(b.Description, {"size": 200})) %></p>
+            <div class="list-box">
+                <a href="/bookers/detail/<%= b.ID %>"><h1><img class="index_image" src="<%= GetPhotoName(b.ID.String(), b.Photo) %>">&nbsp;<%= b.Name %></h1></a>
+                <%= if (current_user.ID.String() == b.OwnerID.String()) { %>
+                    <a href="<%= bookersDeletePath({id: b.ID}) %>" class="btn btn-danger"><%= t("delete") %></a>
+                <% } %>
+                <div class="list-description">
+                    <%= markdown(truncate(b.Description, {"size": 200})) %>
+                </div>
+                <div class="list-location">
+                    <%= b.LocationText %>
+                </div>
+            </div>
         <% } %>
     </div>
 </div>
