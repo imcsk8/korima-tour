@@ -16,7 +16,7 @@
 </div>
 <div class="row mt-3 justify-content-center">
     <div class="col-md-8 col-sm-10">
-        <h2><%= venue.Name %> <button OnClick="ToggleBooking()" type="submit" class="btn btn-primary"><%= t("book") %></button> </h2>
+        <h2><img class="profile_image" src="<%= venue.Photo %>">&nbsp;&nbsp;<%= venue.Name %>&nbsp;&nbsp;<button OnClick="ToggleBooking()" type="submit" class="btn btn-primary hbtn-primary"><%= t("book") %></button> </h2>
         <div id="band_block" style="display: none;">
             <style>
                 div.ui-datepicker {
@@ -27,7 +27,7 @@
                 <label><%= t("select_band") %>:</label>
                 <ul>
                   <%= for (band) in bands { %>
-                  <li><a id="<%= band.ID %>" OnClick="SelectBand('<%= band.ID %>', '<%= band.Name %>')"><%= band.Name %></a></li>
+                  <li class="band-list"><a id="<%= band.ID %>" OnClick="SelectBand('<%= band.ID %>', '<%= band.Name %>')"><%= band.Name %></a></li>
                   <% } %>
                 </ul>
             </span>
@@ -79,9 +79,6 @@
         </div>
         <br />
         <br />
-        <br />
-        <br />
-        <img height="200" width="200" src="<%= venue.Photo %>">
         <!-- TODO fix this block -->
         <%= form({action: bandVenueEventRequestsCreatePath() , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
