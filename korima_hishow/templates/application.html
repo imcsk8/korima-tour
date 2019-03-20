@@ -25,52 +25,60 @@
 
 	    <!-- NavBar -->
 	    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
-	        <a class="navbar-brand" href="<%= rootPath() %>">HiShow Baby!</a>
-	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-	        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	            <ul class="navbar-nav mr-auto">
-	                <li class="nav-item">
-                        <a class="nav-link" href="<%= venuesIndexPath() %>"><%= t("venues") %></a>
-	                </li>
-	                <li class="nav-item">
-                        <a class="nav-link" href="<%= bandsIndexPath() %>"><%= t("bands") %></a>
-	                </li>
-	                <li class="nav-item">
-                        <a class="nav-link" href="<%= bookersIndexPath() %>"><%= t("bookers") %></a>
-	                </li>
-                    <%= if (current_user.Admin) { %>
-	                <li class="nav-item">
-                        <a class="nav-link" href="<%= usersListPath() %>"><%= t("users") %></a>
-	                </li>
+            <!-- NavBar Menu -->
+            <div class="navbar-menu">
+                <a class="navbar-brand" href="<%= rootPath() %>"><img class="navbar_logo" src="<%= assetPath("images/hisow_logo2_hashtag_web_small.png") %>"></a>
+	            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	                <ul class="navbar-nav mr-auto">
+	                    <li class="nav-item">
+                            <a class="nav-link" href="<%= venuesIndexPath() %>"><%= t("venues") %></a>
+	                    </li>
+	                    <li class="nav-item">
+                            <a class="nav-link" href="<%= bandsIndexPath() %>"><%= t("bands") %></a>
+	                    </li>
+	                    <li class="nav-item">
+                            <a class="nav-link" href="<%= bookersIndexPath() %>"><%= t("bookers") %></a>
+	                    </li>
+                        <%= if (current_user.Admin) { %>
+	                    <li class="nav-item">
+                            <a class="nav-link" href="<%= usersListPath() %>"><%= t("users") %></a>
+	                    </li>
+                        <% } %>
+
+
+	                </ul>
+	                <ul class="navbar-nav">
+                    <%= if (current_user) { %>
+                        <li class="nav-item">
+                            <a href="<%= usersLogoutPath() %>" class="nav-link"><%= t("logout") %></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"><%= current_user.Username %></a>
+                        </li>
+
+                    <% } else { %>
+	                    <li class="nav-item">
+                            <a href="<%= usersLoginPath() %>" class="nav-link"><%= t("login") %></a>
+	                    </li>
+	                    <li class="nav-item">
+                            <a href="<%= usersRegisterPath() %>" class="nav-link">Register</a>
+	                    </li>
                     <% } %>
-
-
-	            </ul>
-	            <ul class="navbar-nav">
-                <%= if (current_user) { %>
-                    <li class="nav-item">
-                        <a href="<%= usersLogoutPath() %>" class="nav-link"><%= t("logout") %></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><%= current_user.Username %></a>
-                    </li>
-
-                <% } else { %>
-	                <li class="nav-item">
-                        <a href="<%= usersLoginPath() %>" class="nav-link"><%= t("login") %></a>
-	                </li>
-	                <li class="nav-item">
-                        <a href="<%= usersRegisterPath() %>" class="nav-link">Register</a>
-	                </li>
-                <% } %>
-	            </ul>
-	        </div>
+	                </ul>
+	            </div>
+            </div>
+            <!-- End NavBar Menu -->
 	    </nav> 
 	    <!-- End NavBar -->       
 	    <%= partial("flash.html") %>
-	    <%= yield %>
+        <!-- Main Content -->
+        <div class="content-main">
+	        <%= yield %>
+        </div>
+        <!-- End Main Content -->
     </div>
 
 
