@@ -1,3 +1,7 @@
+body {
+    background-color: #f3f3f3;
+}
+
 .index_image {
         max-height: 100px;
         max-width: 100px;
@@ -5,4 +9,86 @@
         width: 100px;
         border-radius: 10%;
         object-fit: cover;
+        margin-top: 2%;
+        margin-left: 2%;
+        margin-right: 5%;
+}
+
+.profile_image {
+        max-height: 200px;
+        max-width: 200px;
+        height: 200px;
+        width: 200px;
+        border-radius: 10%;
+        object-fit: cover;
+}
+
+.navbar_logo {
+    max-height: 200px;
+    max-width: 200px;
+    height: 100%;
+    width: 25%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    padding: 0rem 0rem !important;
+    width: 100%;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: #e6e6e6;
+    border-width: 0px 0px 1px 0px;
+
+ }
+
+.navbar-brand {
+    height: 25%;
+    width: 25%;
+}
+
+ .navbar-menu {
+    padding: 0rem 0rem !important;
+    width: 100%;
+    margin-left: 25%;
+    margin-right: 25%;
+    /*background-color: blue;*/
+    display: flex;
+ }
+
+ .container {
+     max-width: 100% !important;
+     width: 100% !important;
+     padding-right: 0 !important;
+     padding-left: 0 !important;
+ }
+
+.hbtn-primary {
+    background-color: #449de9;
+
+}
+
+.content-main {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ .list-box {
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+    margin-bottom: 10px;
+    padding-bottom: 2%;
+ }
+
+.list-description {
+    margin-left: 5%;
+}
+
+.list-location {
+    margin-left: 18%;
+}
+
+.btn-sm {
+    margin-left: 5%;
 }
