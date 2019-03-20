@@ -35,9 +35,11 @@
                 <textarea class="form-control" name="Description" id="description"  rows="20">
                     <%= venue.Description %>
                 </textarea>
-
+                <br />
                 <label for="content"><%= t("photo") %></label>
                 <img height="200" width="200" src="<%= venue.Photo %>">
+                <br />
+                <br />
                 <%= f.FileTag({name: "photo_file"}) %>
 
 
