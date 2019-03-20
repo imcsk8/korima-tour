@@ -1,18 +1,26 @@
-<h1>Bands</h1>
-<div class="row">
-    <div class="col-md-3 offset-md-9">
-        <a href="<%= bandsCreatePath() %>" class="btn btn-primary"><%= t("add") %> <%= t("band") %></a>
+<div class="row header">
+    <div class="col">
+        <span class="h1">Bands</span>
+    </div>
+    <div class="col offset-md-8">
+        <a href="<%= bandsCreatePath() %>" class="btn btn-primary"><%= t("add") %></a>
     </div>
 </div>
 <div class="row">
     <div class="col-md-8">
         <%= for (b) in bands { %>
-            <hr>
-            <a href="/bands/detail/<%= b.ID %>"><h1><img class="index_image" src="<%= GetPhotoName(b.ID.String(), b.Photo) %>">&nbsp;<%= b.Name %></h1></a>
-            <%= if (current_user.ID.String() == b.OwnerID.String()) { %>
-            <a href="<%= bandsDeletePath({id: b.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("band") %></a>
-            <% } %>
-            <p><%= markdown(truncate(b.Description, {"size": 200})) %></p>
+            <div class="list-box">
+                <a href="/bands/detail/<%= b.ID %>"><h1><img class="index_image" src="<%= GetPhotoName(b.ID.String(), b.Photo) %>">&nbsp;<%= b.Name %></h1></a>
+                <%= if (current_user.ID.String() == b.OwnerID.String()) { %>
+                    <a href="<%= bandsDeletePath({id: b.ID}) %>" class="btn btn-outline-danger btn-sm"><%= t("delete") %></a>
+                <% } %>
+                <div class="list-description">
+                    <%= markdown(truncate(b.Description, {"size": 200})) %>
+                </div>
+                <div class="list-location">
+                    <%= b.LocationText %>
+                </div>
+            </div>
         <% } %>
     </div>
 </div>
