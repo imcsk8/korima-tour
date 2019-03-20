@@ -1,18 +1,26 @@
-<h1><%= t("venues") %></h1>
-<div class="row">
-    <div class="col-md-3 offset-md-9">
-        <a href="<%= venuesCreatePath() %>" class="btn btn-primary"><%= t("add") %> <%= t("venue") %></a>
+<div class="row header">
+    <div class="col">
+        <span class="h1"><%= t("venues") %></span>
+    </div>
+    <div class="col offset-md-8">
+        <a href="<%= venuesCreatePath() %>" class="btn btn-primary"><%= t("add") %></a>
     </div>
 </div>
 <div class="row">
     <div class="col-md-8">
         <%= for (v) in venues { %>
-            <hr>
-            <a href="/venues/detail/<%= v.ID %>"><h1><img class="index_image" src="<%= GetPhotoName(v.ID.String(), v.Photo) %>">&nbsp;<%= v.Name %></h1></a>
-            <%= if (current_user.ID.String() == v.OwnerID.String()) { %>
-            <a href="<%= venuesDeletePath({id: v.ID}) %>" class="btn btn-danger"><%= t("delete") %> <%= t("venue") %></a>
-            <% } %>
-            <p><%= markdown(truncate(v.Description, {"size": 200})) %></p>
+            <div class="list-box">
+                <a href="/venues/detail/<%= v.ID %>"><h1><img class="index_image" src="<%= GetPhotoName(v.ID.String(), v.Photo) %>">&nbsp;<%= v.Name %></h1></a>
+                <%= if (current_user.ID.String() == v.OwnerID.String()) { %>
+                    <a href="<%= venuesDeletePath({id: v.ID}) %>" class="btn btn-outline-danger btn-sm"><%= t("delete") %></a>
+                <% } %>
+                <div class="list-description">
+                    <%= markdown(truncate(v.Description, {"size": 200})) %>
+                </div>
+                <div class="list-location">
+                    <%= v.LocationText %>
+                </div>
+            </div>
         <% } %>
     </div>
 </div>
