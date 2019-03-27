@@ -130,6 +130,16 @@ func VenuesDetail(c buffalo.Context) error {
 	logrus.Infof("BANDS, %v\nError: %v", bands, err)
 
 	c.Set("bands", bands)
+
+	// Get booking requests
+	reqs := &models.BandVenueEventRequests{}
+	q := tx.PaginateFromParams(c.Params())
+	//if err := q.Where("venue_id = ?", c.Param("id")).Join("bands b", "b.id=?", "band_venue_event_requests.band_id").All(reqs); err != nil {
+	if err := q.Select("band_venue_event_requests.*", "b.name as name").LeftJoin("bands b", "b.id=band_venue_event_requests.band_id").All(reqs); err != nil {
+		return errors.WithStack(err)
+	}
+	c.Set("booking_requests", reqs)
+
 	// Choose template
 	if venue.OwnerID == current_user.ID {
 		c.Set("owner", owner)
