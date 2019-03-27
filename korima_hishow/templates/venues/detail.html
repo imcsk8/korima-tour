@@ -15,12 +15,25 @@
     </div>
 </div>
 <div class="row mt-3 justify-content-center">
-    <div class="col-md-8 col-sm-10">
-        <h2>Venue</h2>
+    <div class="col-11">
         <%= form({action: editVenuesPath({id: venue.ID}) , method: "POST", enctype: "multipart/form-data"}) { %>
             <input name="authenticity_token" type="hidden" value="<%= authenticity_token %>">
             <input name="id" type="hidden" value="<%= venue.ID %>">
             <div class="form-group">
+                <div class="row">
+                    <div class="col-md-0">
+                        <img height="200" width="200" src="<%= venue.Photo %>">
+                    </div>
+                    <div class="col-md-1">
+                        <h4><%= t("booking_requests") %></h4>
+                        <ul class="booking_box">
+                        <%= for (val) in booking_requests { %>
+                            <li><%= val.BandName %></li>
+                        <% } %>
+                        </ul>
+                    </div>
+                </div>
+                </br>
                 <label for="title"><%= t("name") %></label>
                 <input type="text" name="Name" class="form-control" id="name" value="<%= venue.Name %>">
             </div>
@@ -37,7 +50,6 @@
                 </textarea>
                 <br />
                 <label for="content"><%= t("photo") %></label>
-                <img height="200" width="200" src="<%= venue.Photo %>">
                 <br />
                 <br />
                 <%= f.FileTag({name: "photo_file"}) %>
