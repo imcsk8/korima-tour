@@ -8,6 +8,8 @@ import (
 	uuid "github.com/gobuffalo/uuid"
 	//"github.com/gobuffalo/validate"
 	//"github.com/gobuffalo/validate/validators"
+	"github.com/gobuffalo/pop"
+	"github.com/pkg/errors"
 )
 
 type BandVenueEventRequest struct {
@@ -18,6 +20,8 @@ type BandVenueEventRequest struct {
 	VenueID     uuid.UUID `json:"venue_id" db:"venue_id"`
 	RequestDate time.Time `json:"request_date" db:"request_date"`
 	OwnerID     uuid.UUID `json:"owner_id" db:"owner_id"`
+	Status      int       `json:"status" db:"status"`
+	BandName    string    `json:"name" db:"name"`
 }
 
 type BandVenueEventRequests []BandVenueEventRequest
@@ -31,6 +35,14 @@ type BandVenueEventRequests []BandVenueEventRequest
 }*/
 
 // GetID returns a string representation of the ID
-func (v *BandVenueEventRequest) GetID() string {
-	return v.ID.String()
+func (b *BandVenueEventRequest) GetID() string {
+	return b.ID.String()
+}
+
+func (b *BandVenueEventRequest) GetRequests(tx *pop.Connection) (BandVenueEventRequests, error) {
+	br := BandVenueEventRequests{}
+	if err := tx.All(br); err != nil {
+		return nil, errors.WithStack(err)
+	}
+	return br, nil
 }
