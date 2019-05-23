@@ -127,3 +127,24 @@ func BandVenueEventRequestsDetail(c buffalo.Context) error {
 	}*/
 	return c.Render(200, r.HTML("band_venue_event_requests/detail.html"))
 }
+
+// BandVenueEventRequestsApprove approves the request for booking
+func BandVenueEventRequestsApprove(c buffalo.Context) error {
+	tx := c.Value("tx").(*pop.Connection)
+	band_venue_event_request := &models.BandVenueEventRequest{}
+	if err := tx.Find(band_venue_event_request, c.Param("request_id")); err != nil {
+		return c.Error(404, err)
+	}
+	band_venue_event_request.Status = 1
+	verrs, err := tx.ValidateAndUpdate(band_venue_event_request)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	if verrs.HasAny() {
+		c.Set("band_venue_event_request", band_venue_event_request)
+		c.Set("errors", verrs.Errors)
+		return c.Render(422, r.HTML("band_venue_event_requests/detail.html"))
+	}
+	return nil
+}
