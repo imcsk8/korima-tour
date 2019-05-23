@@ -110,6 +110,7 @@ func App() *buffalo.App {
 		bookersGroup.GET("/detail/{id}", BookersDetail)
 
 		bandVenueEventRequestGroup := app.Group("/band_venue_event_requests")
+		bandVenueEventRequestGroup.POST("/approve", BandVenueEventRequestsApprove)
 		bandVenueEventRequestGroup.GET("/index", BandVenueEventRequestsIndex)
 		bandVenueEventRequestGroup.GET("/create", BandVenueEventRequestsCreateShow)
 		bandVenueEventRequestGroup.POST("/create", BandVenueEventRequestsCreate)
