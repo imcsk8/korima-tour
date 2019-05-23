@@ -26,9 +26,9 @@
             <span style="float: left;">
                 <label><%= t("select_band") %>:</label>
                 <ul>
-                  <%= for (band) in bands { %>
-                  <li class="band-list"><a id="<%= band.ID %>" OnClick="SelectBand('<%= band.ID %>', '<%= band.Name %>')"><%= band.Name %></a></li>
-                  <% } %>
+                    <%= for (band) in bands { %>
+                        <li class="band-list"><a id="<%= band.ID %>" OnClick="SelectBand('<%= band.ID %>', '<%= band.Name %>')"><%= band.Name %></a></li>
+                    <% } %>
                 </ul>
             </span>
             <span style="float: center;">
